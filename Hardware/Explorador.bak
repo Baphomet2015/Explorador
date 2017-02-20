@@ -28,12 +28,12 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:freetronics_schematic
-LIBS:arduino
 LIBS:relays
 LIBS:battery_management
 LIBS:Power_Management
 LIBS:elec-unifil
+LIBS:Mi_Libreria_Arduino
+LIBS:arduino
 LIBS:Explorador-cache
 EELAYER 25 0
 EELAYER END
@@ -99,7 +99,7 @@ U 1 1 58A8C5B1
 P 4350 2050
 F 0 "U1" H 4150 2250 50  0000 C CNN
 F 1 "LM317T" H 4700 2250 50  0000 L CNN
-F 2 "TO-220" H 4350 2150 50  0000 C CIN
+F 2 "Power_Integrations:TO-220" H 4350 2150 50  0001 C CIN
 F 3 "" H 4350 2050 50  0000 C CNN
 	1    4350 2050
 	1    0    0    -1  
@@ -121,7 +121,7 @@ U 1 1 58A8E27B
 P 4850 1000
 F 0 "U2" H 5000 804 50  0000 C CNN
 F 1 "LM2940 - 5.0V" H 4850 1200 50  0000 C CNN
-F 2 "TO-220" H 4850 1000 50  0000 C CNN
+F 2 "Power_Integrations:TO-220" H 4850 1000 50  0001 C CNN
 F 3 "" H 4850 1000 50  0000 C CNN
 	1    4850 1000
 	1    0    0    -1  
@@ -413,8 +413,6 @@ Wire Wire Line
 Wire Wire Line
 	4850 1250 4850 1550
 Wire Wire Line
-	4450 1400 4450 1550
-Wire Wire Line
 	3950 950  4450 950 
 Connection ~ 4450 950 
 Wire Wire Line
@@ -423,4 +421,6 @@ Wire Wire Line
 	2750 1400 3550 1400
 Wire Wire Line
 	3150 1800 3150 2600
+Wire Wire Line
+	4450 1400 4450 1550
 $EndSCHEMATC
