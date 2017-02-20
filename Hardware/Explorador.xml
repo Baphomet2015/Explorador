@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>F:/Cortana/Google Drive/Robots/Ignacio/Robots/Explorador/Hardware/Explorador.sch</source>
+    <date>20/02/2017 16:31:50</date>
+    <tool>Eeschema 4.0.5</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>Robot Explorador (conectividad WIFI)</title>
+        <company>Ignacio Corporation</company>
+        <rev>1.0</rev>
+        <date/>
+        <source>Explorador.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="CON1">
+      <value>JACK CARGA</value>
+      <footprint>Connectors:Banana_Jack_3Pin</footprint>
+      <libsource lib="conn" part="BARREL_JACK"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58A8B057</tstamp>
+    </comp>
+    <comp ref="RL1">
+      <value>RE-12V</value>
+      <footprint>Relays_THT:Relay_DPDT_IM0(3,6,7)NS</footprint>
+      <libsource lib="relays" part="AZ850-x"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58A8B77F</tstamp>
+    </comp>
+    <comp ref="BT1">
+      <value>7,2v/2000mA</value>
+      <footprint>Connectors_Molex:Molex_KK-6410-02_02x2.54mm_Straight</footprint>
+      <libsource lib="device" part="Battery_Cell"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58A8B9A5</tstamp>
+    </comp>
+    <comp ref="U1">
+      <value>LM317T</value>
+      <footprint>Power_Integrations:TO-220</footprint>
+      <libsource lib="regul" part="LM317AT"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58A8C5B1</tstamp>
+    </comp>
+    <comp ref="C1">
+      <value>100uF/25v</value>
+      <footprint>Capacitors_THT:C_Radial_D10_L20_P2.5</footprint>
+      <libsource lib="device" part="CP_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58A8C63A</tstamp>
+    </comp>
+    <comp ref="U2">
+      <value>LM2940 - 5.0V</value>
+      <footprint>Power_Integrations:TO-220</footprint>
+      <libsource lib="regul" part="7805"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58A8E27B</tstamp>
+    </comp>
+    <comp ref="C3">
+      <value>10uF/25v</value>
+      <footprint>Capacitors_THT:C_Radial_D10_L20_P2.5</footprint>
+      <libsource lib="device" part="CP_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58A8E46C</tstamp>
+    </comp>
+    <comp ref="C4">
+      <value>100uF/16v</value>
+      <footprint>Capacitors_THT:C_Radial_D10_L20_P2.5</footprint>
+      <libsource lib="device" part="CP_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58A8E4D3</tstamp>
+    </comp>
+    <comp ref="C2">
+      <value>.47uF</value>
+      <footprint>Capacitors_THT:C_Radial_D10_L20_P2.5</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58A8E625</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>6.8ohm/1W</value>
+      <footprint>Resistors_ThroughHole:Resistor_Horizontal_RM15mm</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58A8EC4B</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>22ohm</value>
+      <footprint>Resistors_ThroughHole:Resistor_Horizontal_RM10mm</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58A8ECFC</tstamp>
+    </comp>
+    <comp ref="EI1">
+      <value>ON/OFF</value>
+      <footprint>Connectors_Molex:Molex_KK-6410-02_02x2.54mm_Straight</footprint>
+      <libsource lib="elec-unifil" part="I_6A"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58A8FE00</tstamp>
+    </comp>
+    <comp ref="D3">
+      <value>1N5820</value>
+      <footprint>Diodes_THT:Diode_DO-35_SOD27_Horizontal_RM10</footprint>
+      <libsource lib="device" part="D"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58A96795</tstamp>
+    </comp>
+    <comp ref="D1">
+      <value>ERROR CARGA</value>
+      <footprint>LEDs:LED-3MM</footprint>
+      <libsource lib="device" part="LED"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58A973A8</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>1K</value>
+      <footprint>Resistors_ThroughHole:Resistor_Horizontal_RM10mm</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58A975E5</tstamp>
+    </comp>
+    <comp ref="Q1">
+      <value>BD244</value>
+      <footprint>Transistors_OldSowjetAera:OldSowjetaera_Transistor_Type-II_SmallPads</footprint>
+      <libsource lib="device" part="Q_PNP_BCE"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58A98481</tstamp>
+    </comp>
+    <comp ref="D4">
+      <value>CARGA</value>
+      <footprint>LEDs:LED-3MM</footprint>
+      <libsource lib="device" part="LED"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58A995C2</tstamp>
+    </comp>
+    <comp ref="D2">
+      <value>1N4004</value>
+      <footprint>Diodes_THT:Diode_DO-35_SOD27_Horizontal_RM10</footprint>
+      <libsource lib="device" part="D"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58A9BDC0</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="regul" part="7805">
+      <aliases>
+        <alias>LM7805</alias>
+        <alias>LM7812</alias>
+        <alias>78L05</alias>
+      </aliases>
+      <description>Linear Regulator +5V</description>
+      <docs>regulator\lm78xx.pdf</docs>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">7805</field>
+      </fields>
+      <pins>
+        <pin num="GND" name="GND" type="input"/>
+        <pin num="VI" name="VI" type="input"/>
+        <pin num="VO" name="VO" type="power_out"/>
+      </pins>
+    </libpart>
+    <libpart lib="relays" part="AZ850-x">
+      <aliases>
+        <alias>AZ850P1-x</alias>
+      </aliases>
+      <description>Microminiature Polarised Dual Pole Relay</description>
+      <docs>http://www.azettler.com/pdfs/az850.pdf</docs>
+      <fields>
+        <field name="Reference">RL</field>
+        <field name="Value">AZ850-x</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+        <pin num="3" name="~" type="passive"/>
+        <pin num="4" name="~" type="passive"/>
+        <pin num="7" name="~" type="passive"/>
+        <pin num="8" name="~" type="passive"/>
+        <pin num="9" name="~" type="passive"/>
+        <pin num="10" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="conn" part="BARREL_JACK">
+      <description>DC Barrel Jack</description>
+      <fields>
+        <field name="Reference">CON</field>
+        <field name="Value">BARREL_JACK</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+        <pin num="3" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="Battery_Cell">
+      <description>single battery cell</description>
+      <fields>
+        <field name="Reference">BT</field>
+        <field name="Value">Battery_Cell</field>
+      </fields>
+      <pins>
+        <pin num="1" name="+" type="passive"/>
+        <pin num="2" name="-" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="C">
+      <description>Unpolarized capacitor</description>
+      <footprints>
+        <fp>C?</fp>
+        <fp>C_????_*</fp>
+        <fp>C_????</fp>
+        <fp>SMD*_c</fp>
+        <fp>Capacitor*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="CP_Small">
+      <description>Polarised capacitor</description>
+      <footprints>
+        <fp>CP*</fp>
+        <fp>C_Axial*</fp>
+        <fp>C_Radial*</fp>
+        <fp>TantalC*</fp>
+        <fp>C*elec</fp>
+        <fp>c_elec*</fp>
+        <fp>SMD*_Pol</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">CP_Small</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="D">
+      <description>Diode</description>
+      <footprints>
+        <fp>Diode_*</fp>
+        <fp>D-*</fp>
+        <fp>*SingleDiode</fp>
+        <fp>*_Diode_*</fp>
+        <fp>*SingleDiode*</fp>
+        <fp>D_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">D</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="elec-unifil" part="I_6A">
+      <description>Interrupteur 6A</description>
+      <fields>
+        <field name="Reference">EI</field>
+        <field name="Value">I_6A</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="power_in"/>
+        <pin num="2" name="~" type="power_out"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="LED">
+      <description>LED generic</description>
+      <footprints>
+        <fp>LED*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">LED</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="regul" part="LM317T">
+      <aliases>
+        <alias>LM317AT</alias>
+      </aliases>
+      <description>1.5A 35V Adjustable Linear Regulator, TO-220</description>
+      <docs>http://www.national.com/ds/LM/LM117.pdf</docs>
+      <footprints>
+        <fp>TO*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">LM317T</field>
+        <field name="Footprint">TO-220</field>
+      </fields>
+      <pins>
+        <pin num="1" name="ADJ" type="input"/>
+        <pin num="2" name="OUT" type="power_out"/>
+        <pin num="3" name="IN" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="Q_PNP_BCE">
+      <description>Transistor PNP (general)</description>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">Q_PNP_BCE</field>
+      </fields>
+      <pins>
+        <pin num="1" name="B" type="input"/>
+        <pin num="2" name="C" type="passive"/>
+        <pin num="3" name="E" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="R">
+      <description>Resistor</description>
+      <footprints>
+        <fp>R_*</fp>
+        <fp>Resistor_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="device">
+      <uri>C:\Program Files\KiCad\share\kicad\library\device.lib</uri>
+    </library>
+    <library logical="conn">
+      <uri>C:\Program Files\KiCad\share\kicad\library\conn.lib</uri>
+    </library>
+    <library logical="regul">
+      <uri>C:\Program Files\KiCad\share\kicad\library\regul.lib</uri>
+    </library>
+    <library logical="relays">
+      <uri>C:\Program Files\KiCad\share\kicad\library\relays.lib</uri>
+    </library>
+    <library logical="elec-unifil">
+      <uri>C:\Program Files\KiCad\share\kicad\library\elec-unifil.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="Net-(D1-Pad2)">
+      <node ref="D1" pin="2"/>
+      <node ref="R1" pin="1"/>
+    </net>
+    <net code="2" name="Net-(C1-Pad1)">
+      <node ref="D3" pin="1"/>
+      <node ref="U1" pin="3"/>
+      <node ref="C1" pin="1"/>
+    </net>
+    <net code="3" name="Net-(R3-Pad1)">
+      <node ref="U1" pin="2"/>
+      <node ref="R3" pin="1"/>
+    </net>
+    <net code="4" name="VCC">
+      <node ref="U2" pin="VO"/>
+      <node ref="C4" pin="1"/>
+    </net>
+    <net code="5" name="GND">
+      <node ref="RL1" pin="9"/>
+      <node ref="U2" pin="GND"/>
+      <node ref="C2" pin="2"/>
+      <node ref="C4" pin="2"/>
+      <node ref="C3" pin="2"/>
+    </net>
+    <net code="6" name="Net-(C2-Pad1)">
+      <node ref="C2" pin="1"/>
+      <node ref="C3" pin="1"/>
+      <node ref="U2" pin="VI"/>
+      <node ref="EI1" pin="2"/>
+    </net>
+    <net code="7" name="Net-(EI1-Pad1)">
+      <node ref="RL1" pin="2"/>
+      <node ref="EI1" pin="1"/>
+    </net>
+    <net code="8" name="Net-(CON1-Pad1)">
+      <node ref="CON1" pin="1"/>
+      <node ref="D3" pin="2"/>
+      <node ref="D2" pin="2"/>
+      <node ref="D1" pin="1"/>
+    </net>
+    <net code="9" name="Net-(Q1-Pad3)">
+      <node ref="R2" pin="1"/>
+      <node ref="RL1" pin="7"/>
+      <node ref="Q1" pin="3"/>
+    </net>
+    <net code="10" name="Net-(D4-Pad2)">
+      <node ref="Q1" pin="1"/>
+      <node ref="R2" pin="2"/>
+      <node ref="D4" pin="2"/>
+    </net>
+    <net code="11" name="Net-(BT1-Pad2)">
+      <node ref="BT1" pin="2"/>
+      <node ref="RL1" pin="8"/>
+    </net>
+    <net code="12" name="Net-(R3-Pad2)">
+      <node ref="U1" pin="1"/>
+      <node ref="R3" pin="2"/>
+      <node ref="RL1" pin="4"/>
+    </net>
+    <net code="13" name="Net-(BT1-Pad1)">
+      <node ref="BT1" pin="1"/>
+      <node ref="RL1" pin="3"/>
+    </net>
+    <net code="14" name="Net-(D2-Pad1)">
+      <node ref="RL1" pin="1"/>
+      <node ref="D2" pin="1"/>
+    </net>
+    <net code="15" name="Net-(CON1-Pad3)">
+      <node ref="CON1" pin="3"/>
+    </net>
+    <net code="16" name="Net-(C1-Pad2)">
+      <node ref="R1" pin="2"/>
+      <node ref="Q1" pin="2"/>
+      <node ref="D4" pin="1"/>
+      <node ref="RL1" pin="10"/>
+      <node ref="C1" pin="2"/>
+      <node ref="CON1" pin="2"/>
+    </net>
+  </nets>
+</export>

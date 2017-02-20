@@ -1,4 +1,4 @@
-update=18/02/2017 22:34:16
+update=20/02/2017 12:39:31
 version=1
 last_client=kicad
 [pcbnew]
@@ -23,8 +23,6 @@ ModuleOutlineThickness=0.150000000000
 [cvpcb]
 version=1
 NetIExt=net
-[general]
-version=1
 [eeschema]
 version=1
 LibDir=
@@ -66,3 +64,5 @@ LibName34=C:/Program Files/KiCad/share/kicad/library/battery_management
 LibName35=C:/Program Files/KiCad/share/kicad/library/power
 LibName36=C:/Program Files/KiCad/share/kicad/library/Power_Management
 LibName37=C:/Program Files/KiCad/share/kicad/library/elec-unifil
+[general]
+version=1

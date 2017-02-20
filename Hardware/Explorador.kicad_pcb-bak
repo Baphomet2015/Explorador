@@ -2,7 +2,7 @@
 
   (general
     (links 25)
-    (no_connects 25)
+    (no_connects 22)
     (area 126.636099 96.4086 170.366101 116.3286)
     (thickness 1.6)
     (drawings 0)
@@ -473,7 +473,7 @@
   )
 
   (module Connectors:Banana_Jack_3Pin (layer F.Cu) (tedit 0) (tstamp 58AC647F)
-    (at 153.67 82.55)
+    (at 148.5011 105.0036)
     (descr "Triple banana socket, footprint - 3 x 6mm drills")
     (tags "banana socket")
     (path /58A8B057)
@@ -501,7 +501,7 @@
   )
 
   (module LEDs:LED-3MM (layer F.Cu) (tedit 559B82F6) (tstamp 58AC6490)
-    (at 171.45 95.25)
+    (at 148.5011 105.0036)
     (descr "LED 3mm round vertical")
     (tags "LED  3mm round vertical")
     (path /58A973A8)
@@ -567,7 +567,7 @@
   )
 
   (module Diodes_THT:Diode_DO-35_SOD27_Horizontal_RM10 (layer F.Cu) (tedit 552FFC30) (tstamp 58AC64AE)
-    (at 165.1 113.03)
+    (at 148.5011 105.0036)
     (descr "Diode, DO-35,  SOD27, Horizontal, RM 10mm")
     (tags "Diode, DO-35, SOD27, Horizontal, RM 10mm, 1N4148,")
     (path /58A96795)
@@ -598,7 +598,7 @@
   )
 
   (module LEDs:LED-3MM (layer F.Cu) (tedit 559B82F6) (tstamp 58AC64BF)
-    (at 114.3 95.25)
+    (at 148.5011 105.0036)
     (descr "LED 3mm round vertical")
     (tags "LED  3mm round vertical")
     (path /58A995C2)
@@ -633,7 +633,7 @@
   )
 
   (module Connectors_Molex:Molex_KK-6410-02_02x2.54mm_Straight (layer F.Cu) (tedit 56C6219C) (tstamp 58AC64DB)
-    (at 161.29 95.25)
+    (at 148.5011 105.0036)
     (descr "Connector Headers with Friction Lock, 22-27-2021, http://www.molex.com/pdm_docs/sd/022272021_sd.pdf")
     (tags "connector molex kk_6410 22-27-2021")
     (path /58A8FE00)
@@ -672,7 +672,7 @@
   )
 
   (module Transistors_OldSowjetAera:OldSowjetaera_Transistor_Type-II_SmallPads (layer F.Cu) (tedit 0) (tstamp 58AC64E5)
-    (at 133.35 106.68)
+    (at 148.5011 105.0036)
     (path /58A98481)
     (fp_text reference Q1 (at 0 -7.1) (layer F.SilkS)
       (effects (font (size 1 1) (thickness 0.15)))
@@ -697,7 +697,7 @@
   )
 
   (module Resistors_ThroughHole:Resistor_Horizontal_RM10mm (layer F.Cu) (tedit 56648415) (tstamp 58AC64F5)
-    (at 128.27 95.25)
+    (at 148.5011 105.0036)
     (descr "Resistor, Axial,  RM 10mm, 1/3W")
     (tags "Resistor Axial RM 10mm 1/3W")
     (path /58A975E5)
@@ -729,7 +729,7 @@
   )
 
   (module Resistors_ThroughHole:Resistor_Horizontal_RM10mm (layer F.Cu) (tedit 56648415) (tstamp 58AC6505)
-    (at 102.87 116.84)
+    (at 148.5011 105.0036)
     (descr "Resistor, Axial,  RM 10mm, 1/3W")
     (tags "Resistor Axial RM 10mm 1/3W")
     (path /58A8ECFC)
@@ -761,7 +761,7 @@
   )
 
   (module Resistors_ThroughHole:Resistor_Horizontal_RM15mm (layer F.Cu) (tedit 569FCEE8) (tstamp 58AC6515)
-    (at 114.3 86.36)
+    (at 148.5011 105.0036)
     (descr "Resistor, Axial, RM 15mm,")
     (tags "Resistor Axial RM 15mm")
     (path /58A8EC4B)
@@ -842,7 +842,7 @@
   )
 
   (module TO-220 (layer F.Cu) (tedit 0) (tstamp 58AC6543)
-    (at 149.86 97.79)
+    (at 148.5011 105.0036)
     (descr "Non Isolated JEDEC TO-220 Package")
     (tags "Power Integration YN Package")
     (path /58A8C5B1)
@@ -871,7 +871,7 @@
   )
 
   (module TO-220 (layer F.Cu) (tedit 0) (tstamp 58AC6554)
-    (at 115.57 104.14)
+    (at 148.5011 105.0036)
     (descr "Non Isolated JEDEC TO-220 Package")
     (tags "Power Integration YN Package")
     (path /58A8E27B)
