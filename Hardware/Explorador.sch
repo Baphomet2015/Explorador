@@ -28,13 +28,16 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:freetronics_schematic
-LIBS:arduino
 LIBS:relays
 LIBS:battery_management
 LIBS:Power_Management
 LIBS:elec-unifil
+<<<<<<< HEAD
 LIBS:Baphomet_Libreria
+=======
+LIBS:Mi_Libreria_Arduino
+LIBS:arduino
+>>>>>>> 059fa3c24b4b8596c419aa76a3cf66924e643c58
 LIBS:Explorador-cache
 EELAYER 25 0
 EELAYER END
@@ -77,7 +80,7 @@ L Battery_Cell BT1
 U 1 1 58A8B9A5
 P 1350 1750
 F 0 "BT1" H 1100 1800 50  0000 L CNN
-F 1 "7,2v/2000mA" H 800 1700 50  0000 L CNN
+F 1 "7,2v/2600mA" H 800 1700 50  0000 L CNN
 F 2 "Connectors_Molex:Molex_KK-6410-02_02x2.54mm_Straight" V 1350 1810 50  0001 C CNN
 F 3 "" V 1350 1810 50  0000 C CNN
 	1    1350 1750
@@ -414,8 +417,6 @@ Wire Wire Line
 Wire Wire Line
 	4850 1250 4850 1550
 Wire Wire Line
-	4450 1400 4450 1550
-Wire Wire Line
 	3950 950  4450 950 
 Connection ~ 4450 950 
 Wire Wire Line
@@ -424,6 +425,7 @@ Wire Wire Line
 	2750 1400 3550 1400
 Wire Wire Line
 	3150 1800 3150 2600
+<<<<<<< HEAD
 $Comp
 L R R?
 U 1 1 58B00069
@@ -508,10 +510,65 @@ F 1 "GND" H 8200 1600 50  0001 C CNN
 F 2 "" H 8200 1750 50  0000 C CNN
 F 3 "" H 8200 1750 50  0000 C CNN
 	1    8200 1750
+=======
+Wire Wire Line
+	4450 1400 4450 1550
+$Comp
+L SHT15 U?
+U 1 1 58AB69DA
+P 8700 950
+F 0 "U?" H 8700 950 60  0000 C BNN
+F 1 "SHT15" H 8750 450 60  0000 C TNN
+F 2 "" H 8700 950 60  0001 C CNN
+F 3 "" H 8700 950 60  0001 C CNN
+	1    8700 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L VCC #PWR?
+U 1 1 58AB6B1C
+P 9050 800
+F 0 "#PWR?" H 9050 650 50  0001 C CNN
+F 1 "VCC" H 9050 950 50  0000 C CNN
+F 2 "" H 9050 800 50  0000 C CNN
+F 3 "" H 9050 800 50  0000 C CNN
+	1    9050 800 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9050 1050 9050 800 
+Wire Wire Line
+	9050 1050 8850 1050
+$Comp
+L GND #PWR?
+U 1 1 58AB7157
+P 9050 1600
+F 0 "#PWR?" H 9050 1350 50  0001 C CNN
+F 1 "GND" H 9050 1450 50  0001 C CNN
+F 2 "" H 9050 1600 50  0000 C CNN
+F 3 "" H 9050 1600 50  0000 C CNN
+	1    9050 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8850 1350 9050 1350
+Wire Wire Line
+	9050 1350 9050 1600
+$Comp
+L Ultrasonidos_PING U?
+U 1 1 58AB72A4
+P 9900 1000
+F 0 "U?" H 9900 1050 60  0000 C CNN
+F 1 "Ultrasonidos_PING" H 9900 1150 60  0000 C CNN
+F 2 "" H 9900 1000 60  0001 C CNN
+F 3 "" H 9900 1000 60  0001 C CNN
+	1    9900 1000
+>>>>>>> 059fa3c24b4b8596c419aa76a3cf66924e643c58
 	1    0    0    -1  
 $EndComp
 $Comp
 L GND #PWR?
+<<<<<<< HEAD
 U 1 1 58B01892
 P 8500 1750
 F 0 "#PWR?" H 8500 1500 50  0001 C CNN
@@ -550,4 +607,34 @@ Text GLabel 8750 1200 2    60   Input ~ 0
 BATT_NIVEL
 Text Notes 8650 1800 0    60   ~ 0
 Con la bateria cargada completamente (+7,5V),\najustar a 5V.
+=======
+U 1 1 58AB73F7
+P 10200 1000
+F 0 "#PWR?" H 10200 750 50  0001 C CNN
+F 1 "GND" H 10200 850 50  0001 C CNN
+F 2 "" H 10200 1000 50  0000 C CNN
+F 3 "" H 10200 1000 50  0000 C CNN
+	1    10200 1000
+	-1   0    0    1   
+$EndComp
+$Comp
+L VCC #PWR?
+U 1 1 58AB76FB
+P 10200 1500
+F 0 "#PWR?" H 10200 1350 50  0001 C CNN
+F 1 "VCC" H 10200 1650 50  0000 C CNN
+F 2 "" H 10200 1500 50  0000 C CNN
+F 3 "" H 10200 1500 50  0000 C CNN
+	1    10200 1500
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	10000 1100 10200 1100
+Wire Wire Line
+	10200 1100 10200 1000
+Wire Wire Line
+	10000 1200 10200 1200
+Wire Wire Line
+	10200 1200 10200 1500
+>>>>>>> 059fa3c24b4b8596c419aa76a3cf66924e643c58
 $EndSCHEMATC

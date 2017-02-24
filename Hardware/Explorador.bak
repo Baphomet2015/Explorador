@@ -28,13 +28,16 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:freetronics_schematic
-LIBS:arduino
 LIBS:relays
 LIBS:battery_management
 LIBS:Power_Management
 LIBS:elec-unifil
+<<<<<<< HEAD
 LIBS:Baphomet_Libreria
+=======
+LIBS:Mi_Libreria_Arduino
+LIBS:arduino
+>>>>>>> 059fa3c24b4b8596c419aa76a3cf66924e643c58
 LIBS:Explorador-cache
 EELAYER 25 0
 EELAYER END
@@ -414,8 +417,6 @@ Wire Wire Line
 Wire Wire Line
 	4850 1250 4850 1550
 Wire Wire Line
-	4450 1400 4450 1550
-Wire Wire Line
 	3950 950  4450 950 
 Connection ~ 4450 950 
 Wire Wire Line
@@ -424,6 +425,7 @@ Wire Wire Line
 	2750 1400 3550 1400
 Wire Wire Line
 	3150 1800 3150 2600
+<<<<<<< HEAD
 $Comp
 L R R?
 U 1 1 58B00069
@@ -548,4 +550,8 @@ Wire Wire Line
 	9200 1350 9200 1150
 Text GLabel 9750 1150 2    60   Input ~ 0
 BATT_NIVEL
+=======
+Wire Wire Line
+	4450 1400 4450 1550
+>>>>>>> 059fa3c24b4b8596c419aa76a3cf66924e643c58
 $EndSCHEMATC
