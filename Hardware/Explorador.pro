@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-update=22/02/2017 11:16:33
-=======
-update=20/02/2017 21:11:16
->>>>>>> 059fa3c24b4b8596c419aa76a3cf66924e643c58
+update=24/02/2017 12:06:45
 version=1
 last_client=kicad
 [pcbnew]
@@ -62,7 +58,6 @@ LibName26=opto
 LibName27=atmel
 LibName28=contrib
 LibName29=valves
-<<<<<<< HEAD
 LibName30=D:/Cortana/Google Drive/Electronica/KiCad/Librerias_Arduino/freetronics_kicad_library-master/freetronics_schematic
 LibName31=D:/Cortana/Google Drive/Electronica/KiCad/Librerias_Arduino/arduino_lib-master/arduino
 LibName32=C:/Program Files/KiCad/share/kicad/library/relays
@@ -71,12 +66,3 @@ LibName34=C:/Program Files/KiCad/share/kicad/library/power
 LibName35=C:/Program Files/KiCad/share/kicad/library/Power_Management
 LibName36=C:/Program Files/KiCad/share/kicad/library/elec-unifil
 LibName37=D:/Cortana/Google Drive/Electronica/KiCad/Baphomet_Libreria/Baphomet_Libreria
-=======
-LibName30=C:/Program Files/KiCad/share/kicad/library/relays
-LibName31=C:/Program Files/KiCad/share/kicad/library/battery_management
-LibName32=C:/Program Files/KiCad/share/kicad/library/power
-LibName33=C:/Program Files/KiCad/share/kicad/library/Power_Management
-LibName34=C:/Program Files/KiCad/share/kicad/library/elec-unifil
-LibName35=C:/Datos/Ignacio/KiCad/Mis_Librerias/Mi_Libreria_Arduino
-LibName36=C:/Datos/Ignacio/KiCad/Librerias_Arduino/arduino_lib-master/arduino
->>>>>>> 059fa3c24b4b8596c419aa76a3cf66924e643c58

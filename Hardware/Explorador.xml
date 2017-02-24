@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="D">
   <design>
-    <source>C:/Datos/Ignacio/Robots/Explorador/Hardware/Explorador.sch</source>
-    <date>20/02/2017 21:14:43</date>
+    <source>F:/Cortana/Google Drive/Robots/Ignacio/Robots/Explorador/Hardware/Explorador.sch</source>
+    <date>20/02/2017 16:31:50</date>
     <tool>Eeschema 4.0.5</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -340,20 +340,20 @@
     </libpart>
   </libparts>
   <libraries>
+    <library logical="device">
+      <uri>C:\Program Files\KiCad\share\kicad\library\device.lib</uri>
+    </library>
+    <library logical="conn">
+      <uri>C:\Program Files\KiCad\share\kicad\library\conn.lib</uri>
+    </library>
+    <library logical="regul">
+      <uri>C:\Program Files\KiCad\share\kicad\library\regul.lib</uri>
+    </library>
     <library logical="relays">
       <uri>C:\Program Files\KiCad\share\kicad\library\relays.lib</uri>
     </library>
     <library logical="elec-unifil">
       <uri>C:\Program Files\KiCad\share\kicad\library\elec-unifil.lib</uri>
-    </library>
-    <library logical="regul">
-      <uri>C:\Program Files\KiCad\share\kicad\library\regul.lib</uri>
-    </library>
-    <library logical="conn">
-      <uri>C:\Program Files\KiCad\share\kicad\library\conn.lib</uri>
-    </library>
-    <library logical="device">
-      <uri>C:\Program Files\KiCad\share\kicad\library\device.lib</uri>
     </library>
   </libraries>
   <nets>
