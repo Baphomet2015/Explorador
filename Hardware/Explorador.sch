@@ -34,6 +34,7 @@ LIBS:relays
 LIBS:battery_management
 LIBS:Power_Management
 LIBS:elec-unifil
+LIBS:Baphomet_Libreria
 LIBS:Explorador-cache
 EELAYER 25 0
 EELAYER END
@@ -99,7 +100,7 @@ U 1 1 58A8C5B1
 P 4350 2050
 F 0 "U1" H 4150 2250 50  0000 C CNN
 F 1 "LM317T" H 4700 2250 50  0000 L CNN
-F 2 "Power_Integrations:TO-220" H 4350 2150 50  0000 C CIN
+F 2 "Power_Integrations:TO-220" H 4350 2150 50  0001 C CIN
 F 3 "" H 4350 2050 50  0000 C CNN
 	1    4350 2050
 	1    0    0    -1  
@@ -121,7 +122,7 @@ U 1 1 58A8E27B
 P 4850 1000
 F 0 "U2" H 5000 804 50  0000 C CNN
 F 1 "LM2940 - 5.0V" H 4850 1200 50  0000 C CNN
-F 2 "Power_Integrations:TO-220" H 4850 1000 50  0000 C CNN
+F 2 "Power_Integrations:TO-220" H 4850 1000 50  0001 C CNN
 F 3 "" H 4850 1000 50  0000 C CNN
 	1    4850 1000
 	1    0    0    -1  
@@ -310,7 +311,7 @@ Wire Wire Line
 Wire Wire Line
 	5250 1200 5250 950 
 Wire Wire Line
-	4250 1150 4250 950 
+	4250 650  4250 1150
 Connection ~ 4250 950 
 Wire Wire Line
 	4250 1450 4250 1550
@@ -393,7 +394,7 @@ Connection ~ 4200 2750
 Wire Wire Line
 	3300 600  3350 600 
 Wire Wire Line
-	3000 600  1550 600 
+	1550 600  3000 600 
 $Comp
 L D D2
 U 1 1 58A9BDC0
@@ -423,4 +424,130 @@ Wire Wire Line
 	2750 1400 3550 1400
 Wire Wire Line
 	3150 1800 3150 2600
+$Comp
+L R R?
+U 1 1 58B00069
+P 8500 1000
+F 0 "R?" H 8600 950 50  0000 C CNN
+F 1 "3K" H 8600 1050 50  0000 C CNN
+F 2 "" V 8430 1000 50  0000 C CNN
+F 3 "" H 8500 1000 50  0000 C CNN
+	1    8500 1000
+	1    0    0    -1  
+$EndComp
+$Comp
+L VPP #PWR?
+U 1 1 58B013A7
+P 6050 650
+F 0 "#PWR?" H 6050 500 50  0001 C CNN
+F 1 "VPP" V 5950 750 50  0000 C CNN
+F 2 "" H 6050 650 50  0000 C CNN
+F 3 "" H 6050 650 50  0000 C CNN
+	1    6050 650 
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6050 650  4250 650 
+$Comp
+L VPP #PWR?
+U 1 1 58B02910
+P 8500 750
+F 0 "#PWR?" H 8500 600 50  0001 C CNN
+F 1 "VPP" H 8500 900 50  0000 C CNN
+F 2 "" H 8500 750 50  0000 C CNN
+F 3 "" H 8500 750 50  0000 C CNN
+	1    8500 750 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8500 850  8500 750 
+Wire Wire Line
+	8500 1150 8500 1400
+$Comp
+L C C?
+U 1 1 58B03026
+P 8200 1550
+F 0 "C?" H 8250 2100 50  0000 L CNN
+F 1 "100nF" H 8100 2000 50  0000 L CNN
+F 2 "Capacitors_THT:C_Radial_D10_L20_P2.5" H 8238 1400 50  0001 C CNN
+F 3 "" H 8200 1550 50  0000 C CNN
+	1    8200 1550
+	1    0    0    -1  
+$EndComp
+Connection ~ 8500 1200
+$Comp
+L CP_Small C?
+U 1 1 58B04752
+P 8000 1550
+F 0 "C?" H 7750 1600 50  0000 L CNN
+F 1 "100uF/25v" H 7450 1500 50  0000 L CNN
+F 2 "Capacitors_THT:C_Radial_D10_L20_P2.5" H 8000 1550 50  0001 C CNN
+F 3 "" H 8000 1550 50  0000 C CNN
+	1    8000 1550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8000 1200 8000 1450
+$Comp
+L GND #PWR?
+U 1 1 58B01262
+P 8000 1750
+F 0 "#PWR?" H 8000 1500 50  0001 C CNN
+F 1 "GND" H 8000 1600 50  0001 C CNN
+F 2 "" H 8000 1750 50  0000 C CNN
+F 3 "" H 8000 1750 50  0000 C CNN
+	1    8000 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 58B01845
+P 8200 1750
+F 0 "#PWR?" H 8200 1500 50  0001 C CNN
+F 1 "GND" H 8200 1600 50  0001 C CNN
+F 2 "" H 8200 1750 50  0000 C CNN
+F 3 "" H 8200 1750 50  0000 C CNN
+	1    8200 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 58B01892
+P 8500 1750
+F 0 "#PWR?" H 8500 1500 50  0001 C CNN
+F 1 "GND" H 8500 1600 50  0001 C CNN
+F 2 "" H 8500 1750 50  0000 C CNN
+F 3 "" H 8500 1750 50  0000 C CNN
+	1    8500 1750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8000 1650 8000 1750
+Wire Wire Line
+	8200 1700 8200 1750
+$Comp
+L POT_TRIM RV?
+U 1 1 58B01C4B
+P 8500 1550
+F 0 "RV?" H 8350 1550 50  0000 C CNN
+F 1 "10K" H 8350 1650 50  0000 C CNN
+F 2 "" H 8500 1550 50  0000 C CNN
+F 3 "" H 8500 1550 50  0000 C CNN
+	1    8500 1550
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	8500 1700 8500 1750
+Wire Wire Line
+	8350 1200 8350 1550
+Wire Wire Line
+	8000 1200 8750 1200
+Connection ~ 8350 1200
+Connection ~ 8200 1200
+Wire Wire Line
+	8200 1400 8200 1200
+Text GLabel 8750 1200 2    60   Input ~ 0
+BATT_NIVEL
+Text Notes 8650 1800 0    60   ~ 0
+Con la bateria cargada completamente (+7,5V),\najustar a 5V.
 $EndSCHEMATC

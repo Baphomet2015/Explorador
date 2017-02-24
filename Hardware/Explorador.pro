@@ -1,4 +1,4 @@
-update=20/02/2017 12:39:31
+update=22/02/2017 11:16:33
 version=1
 last_client=kicad
 [pcbnew]
@@ -23,6 +23,8 @@ ModuleOutlineThickness=0.150000000000
 [cvpcb]
 version=1
 NetIExt=net
+[general]
+version=1
 [eeschema]
 version=1
 LibDir=
@@ -57,12 +59,10 @@ LibName27=atmel
 LibName28=contrib
 LibName29=valves
 LibName30=D:/Cortana/Google Drive/Electronica/KiCad/Librerias_Arduino/freetronics_kicad_library-master/freetronics_schematic
-LibName31=D:/Cortana/Google Drive/Electronica/KiCad/Mis_Librerias/Mi_Libreria_Arduino
-LibName32=D:/Cortana/Google Drive/Electronica/KiCad/Librerias_Arduino/arduino_lib-master/arduino
-LibName33=C:/Program Files/KiCad/share/kicad/library/relays
-LibName34=C:/Program Files/KiCad/share/kicad/library/battery_management
-LibName35=C:/Program Files/KiCad/share/kicad/library/power
-LibName36=C:/Program Files/KiCad/share/kicad/library/Power_Management
-LibName37=C:/Program Files/KiCad/share/kicad/library/elec-unifil
-[general]
-version=1
+LibName31=D:/Cortana/Google Drive/Electronica/KiCad/Librerias_Arduino/arduino_lib-master/arduino
+LibName32=C:/Program Files/KiCad/share/kicad/library/relays
+LibName33=C:/Program Files/KiCad/share/kicad/library/battery_management
+LibName34=C:/Program Files/KiCad/share/kicad/library/power
+LibName35=C:/Program Files/KiCad/share/kicad/library/Power_Management
+LibName36=C:/Program Files/KiCad/share/kicad/library/elec-unifil
+LibName37=D:/Cortana/Google Drive/Electronica/KiCad/Baphomet_Libreria/Baphomet_Libreria
