@@ -1,4 +1,4 @@
-update=24/02/2017 12:06:45
+update=26/02/2017 10:43:40
 version=1
 last_client=kicad
 [pcbnew]
@@ -65,4 +65,4 @@ LibName33=C:/Program Files/KiCad/share/kicad/library/battery_management
 LibName34=C:/Program Files/KiCad/share/kicad/library/power
 LibName35=C:/Program Files/KiCad/share/kicad/library/Power_Management
 LibName36=C:/Program Files/KiCad/share/kicad/library/elec-unifil
-LibName37=D:/Cortana/Google Drive/Electronica/KiCad/Baphomet_Libreria/Baphomet_Libreria
+LibName37=D:/Cortana/Google drive/Electronica/KiCad/KiCad_Libreria/Baphomet_Libreria
