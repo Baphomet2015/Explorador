@@ -1,58 +1,156 @@
 
-/*
-File: WebServer.ino
-This example creates a simple web server on your Arduino Uno WiFi. It serves a
-simple web page which shows values of the analog pins, and refreshes every 20 seconds.
-Please type on your browser http://<IP>/arduino/webserver/ or http://<hostname>.local/arduino/webserver/
+// -----------------------------------------------------------------------------
+//
+// Descarga directa de la libreria UnoWiFiDevEd.h (aunque no es preciso porque
+// se descarga desde el IDE en la opcion Programa->Incluir Liberia->Gestionar Libreria):
+// http://www.arduinolibraries.info/libraries/arduino-uno-wi-fi-dev-ed-library
+// https://github.com/arduino-libraries/UnoWiFi-Developer-Edition-Lib/tree/master/src
 
-Note: works only with Arduino Uno WiFi Developer Edition.
+// Guia de uso de la libreria UnoWiFiDevEd:
+// 
+//
+// ACCESO a esta aplicacion:
+// http://<IP>/arduino/webserver/ 
+// http://<hostname>.local/arduino/webserver/
+// 
+//
+// IMPORTANTE:
+//  Si se utiliza el IDE 1.7.x se debe utilizar la version de libreria ArduinoWiFi.h
+//  e incluir #include <ArduinoWiFi.h>
+//  Si se utiliza el IDE 1.8.x se debe utilizar la version de libreria UNOWiFiDev.Edition
+//  e incluir #include <UnoWiFiDevEd.h>
+//  
+// NOTA: 
+//  Esta versión de programa solo fnciona con Arduino
+//  UNO WIFI Developer Edition  
+//
+// ----------------------------------------------------------------
 
-http://www.arduino.org/learning/tutorials/boards-tutorials/webserver
-*/
 
-#include <Wire.h>
+
 #include <UnoWiFiDevEd.h>
+#include <SPI.h>
+#include <SD.h>
 
-void setup() {
- Wifi.begin();
- Wifi.println("Web Server is up");
+
+
+// ----------------------------------------------------------------
+//
+// Defines y variables globales
+//
+// ----------------------------------------------------------------
+
+#define IDE_HW_SD_CSPIN  1 // SD: Chip Select
+
+
+
+
+
+
+
+// ----------------------------------------------------------------
+//
+//
+//
+// ----------------------------------------------------------------
+
+void setup()
+{
+  byte status;
+  
+  // -------------------------------------------------------------
+  //
+  // -------------------------------------------------------------
+  status = false;           // Para iniciar por defecto
+  Serial.begin(9600);       // Para depuracion
+
+  // -------------------------------------------------------------
+  //
+  // -------------------------------------------------------------
+
+  if ( status==false)
+     { // ------------------------------------------- 
+       // Inicializar tarjeta SD  
+       // ------------------------------------------- 
+       Serial.println("SD Card inicializando...");
+       if (SD.begin(IDE_HW_SD_CSPIN)==false) { Serial.println("SD card inicializacion ERROR"); status = true; }
+       else                                  { Serial.println("SD card initializacion OK");                   }
+     }
+
+  if ( status==false)
+     { // ------------------------------------------- 
+       // Inicializar coenxion Wifi
+       // ------------------------------------------- 
+       Serial.println("Iniciando conexión WIFI...");
+    //   if ( Wifi.begin()!=WL_CONNECTED ) { Serial.println("Server inicializacion ERROR"); status = true; }
+    //   else                              { Serial.println("Server inicializacion OK");                   }
+     }
+
+
+
+
+
+   
+ 
+
+
+   
 }
-void loop() {
 
- while(Wifi.available()){
- process(Wifi);
- }
- delay(50);
+
+
+
+
+
+
+
+// ----------------------------------------------------------------
+//
+//
+//
+// ----------------------------------------------------------------
+
+void loop()
+{
+
+  while( Wifi.available() )
+       {
+         process(Wifi);
+       }
+  delay(50);
 }
 
-void process(WifiData client) {
- // read the command
- String command = client.readStringUntil('/');
 
- if (command == "webserver") {
- WebServer(client);
- }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void process(WifiData client)
+{
+
+  char c;
+
+c = client.read();
+
+
+
+
+  
 }
-void WebServer(WifiData client) {
- client.println("HTTP/1.1 200 OK");
- client.println("Content-Type: text/html");
- client.println("Connection: close");
- client.println("Refresh: 20"); // refresh the page automatically every sec
- client.println();
- client.println("<html>");
- client.println("<head> <title>UNO WIFI Example</title> </head>");
- client.print("<body>");
 
- for(int analogChannel = 0; analogChannel < 4; analogChannel++) {
- int sensorReading = 27;
- client.print("analog input ");
- client.print(analogChannel);
- client.print(" is ");
- client.print(sensorReading);
- client.print("<br/>");
- }
 
- client.print("</body>");
- client.println("</html>");
- client.print(DELIMITER); // very important to end the communication !!!
-}
+
+
