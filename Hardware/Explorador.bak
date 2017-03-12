@@ -811,8 +811,36 @@ F 3 "" H 9200 3350 50  0000 C CNN
 $EndComp
 Wire Wire Line
 	8900 3350 9200 3350
-Text GLabel 9600 1750 2    60   Input ~ 0
+Text GLabel 9600 1650 2    60   Input ~ 0
 STH15_DATA
+Text GLabel 9650 1950 2    60   Input ~ 0
+STH15_SCK
 Wire Wire Line
-	8900 1750 9600 1750
+	8900 1850 9500 1850
+Wire Wire Line
+	9500 1850 9500 1950
+Wire Wire Line
+	8900 1750 9500 1750
+Wire Wire Line
+	9500 1750 9500 1650
+Wire Wire Line
+	9500 1650 9600 1650
+Wire Wire Line
+	9500 1950 9650 1950
+Text GLabel 9500 4700 2    60   Input ~ 0
+STH15_DATA
+Text GLabel 9500 4900 2    60   Input ~ 0
+STH15_SCK
+Wire Wire Line
+	8900 4750 9450 4750
+Wire Wire Line
+	9450 4750 9450 4700
+Wire Wire Line
+	9450 4700 9500 4700
+Wire Wire Line
+	8900 4850 9450 4850
+Wire Wire Line
+	9450 4850 9450 4900
+Wire Wire Line
+	9450 4900 9500 4900
 $EndSCHEMATC
