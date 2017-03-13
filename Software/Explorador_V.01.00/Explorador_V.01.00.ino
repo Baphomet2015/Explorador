@@ -42,11 +42,17 @@
 
 #define IDE_HW_SD_CSPIN  1 // SD: Chip Select
 
+const char IDE_MSG_SD_INI     [] PROGMEM = "SD Card inicializando...";
+const char IDE_MSG_SD_ERROR   [] PROGMEM = "SD card inicializacion ERROR";
+const char IDE_MSG_SD_OK      [] PROGMEM = "SD card inicializacion OK";
+const char IDE_MSG_WIFI_INI   [] PROGMEM = "Iniciando conexión WIFI...";
+const char IDE_MSG_WIFI_ERROR [] PROGMEM = "WIFI inicializacion ERROR";
+const char IDE_MSG_WIFI_OK    [] PROGMEM = "WIFI inicializacion OK";
 
+const char IDE_FICHERO_WEB_01 [] PROGMEM = "index.html";
+const char IDE_FICHERO_WEB_02 [] PROGMEM = "styles.css";
 
-
-
-
+byte status;
 
 // ----------------------------------------------------------------
 //
@@ -56,7 +62,6 @@
 
 void setup()
 {
-  byte status;
   
   // -------------------------------------------------------------
   //
@@ -72,18 +77,18 @@ void setup()
      { // ------------------------------------------- 
        // Inicializar tarjeta SD  
        // ------------------------------------------- 
-       Serial.println("SD Card inicializando...");
-       if (SD.begin(IDE_HW_SD_CSPIN)==false) { Serial.println("SD card inicializacion ERROR"); status = true; }
-       else                                  { Serial.println("SD card initializacion OK");                   }
+       Serial.println(IDE_MSG_SD_INI);
+       if (SD.begin(IDE_HW_SD_CSPIN)==false) { Serial.println(IDE_MSG_SD_ERROR); status = true; }
+       else                                  { Serial.println(IDE_MSG_SD_OK);                   }
      }
 
   if ( status==false)
      { // ------------------------------------------- 
        // Inicializar coenxion Wifi
        // ------------------------------------------- 
-       Serial.println("Iniciando conexión WIFI...");
-    //   if ( Wifi.begin()!=WL_CONNECTED ) { Serial.println("Server inicializacion ERROR"); status = true; }
-    //   else                              { Serial.println("Server inicializacion OK");                   }
+       Serial.println(IDE_MSG_WIFI_INI);
+       Wifi.begin();
+       Serial.println(IDE_MSG_WIFI_OK);
      }
 
 
@@ -112,11 +117,20 @@ void setup()
 
 void loop()
 {
+  char c;
+  String command;
 
+  command = "";
   while( Wifi.available() )
        {
-         process(Wifi);
+         c = Wifi.read();
+         command = command + (char)c;  
        }
+  if ( command.length()>0 ) 
+     { 
+       Serial.println(command);
+     }
+     
   delay(50);
 }
 
@@ -140,10 +154,6 @@ void loop()
 
 void process(WifiData client)
 {
-
-  char c;
-
-c = client.read();
 
 
 
