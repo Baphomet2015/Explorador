@@ -12,11 +12,10 @@
 // ---------------------------------- 
 function recargarDatos()
 {
- document.getElementById("IFRM_Datos").style.visibility = "hidden";
+ document.getElementById("IFRM_Datos").contentDocument.location.reload(true);
 }
 
 </script>
-
 
 </head>
 
@@ -39,7 +38,7 @@ function recargarDatos()
   </div>
   
   <div id="mainContent">
-	<iframe scrolling="NO" src="datos.html" id="IFRM_Datos" frameborder="0" height="300" width="300">
+	<iframe scrolling="NO" src="datos.html" id="IFRM_Datos" frameborder="1" height="300" width="300">
 	</iframe>
   </div>
 

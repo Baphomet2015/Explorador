@@ -6,6 +6,16 @@ body  {
 	text-align: center; /* esto centra el contenedor en los navegadores IE 5*. El texto se ajusta posteriormente con el valor predeterminado de alineación a la izquierda en el selector #container */
 	color: #000000;
 }
+
+.mainDatos { 
+    background-color:#DDF0FF;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #003399;
+} 
+
 .twoColHybLtHdr #container { 
 	width: 80%;  /* esto creará un contenedor con el 80% del ancho del navegador */
 	background: #FFFFFF;
@@ -46,6 +56,7 @@ body  {
 .twoColHybLtHdr #mainContent { 
 	margin: 0 20px 0 13em; /* el margen derecho puede asignarse en porcentajes o píxeles. Éste crea el espacio a lo largo de la parte derecha de la página. */
 } 
+
 .twoColHybLtHdr #footer { 
 	padding: 0 10px; /* este relleno coincide con la alineación izquierda de los elementos de los divs que aparecen por encima de él. */
 	background:#DDDDDD;
