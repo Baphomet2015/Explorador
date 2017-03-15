@@ -4,7 +4,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>ROBOT EXPLORADOR</title>
 <link rel="stylesheet" type="text/css" href="styles.css" >
+
+<script type="text/JavaScript">
+
+// ----------------------------------
+//
+// ---------------------------------- 
+function recargarDatos()
+{
+ document.getElementById("IFRM_Datos").style.visibility = "hidden";
+}
+
+</script>
+
+
 </head>
+
+
+
+
 
 <body class="twoColHybLtHdr">
 
@@ -15,16 +33,14 @@
   </div>
     
   <div id="sidebar1">
-    <h3>CONTROLES</h3>
-    <p>CONTROL 1</p>
-    <p>CONTROL 2</p>
-    <p>CONTROL 3</p>
+    <div id="C_Datos" align="center" >
+    <input type="button" value="DATOS" onclick="recargarDatos()" >
+	</div>
   </div>
   
   <div id="mainContent">
-	<h1>PRINCIPAL</h1>
-    <p>SENSOR 1</p>
-    <p>SENSOR 2</p>
+	<iframe scrolling="NO" src="datos.html" id="IFRM_Datos" frameborder="0" height="300" width="300">
+	</iframe>
   </div>
 
   <br class="clearfloat" />
