@@ -40,23 +40,46 @@
 //
 // ----------------------------------------------------------------
 
-#define IDE_HW_SD_CSPIN  1 // SD: Chip Select
+#define IDE_HW_SD_CSPIN           1 // SD: Chip Select
 
-const char IDE_MSG_SD_INI     [] PROGMEM = "SD Card inicializando...";
-const char IDE_MSG_SD_ERROR   [] PROGMEM = "SD card inicializacion ERROR";
-const char IDE_MSG_SD_OK      [] PROGMEM = "SD card inicializacion OK";
-const char IDE_MSG_WIFI_INI   [] PROGMEM = "Iniciando conexión WIFI...";
-const char IDE_MSG_WIFI_ERROR [] PROGMEM = "WIFI inicializacion ERROR";
-const char IDE_MSG_WIFI_OK    [] PROGMEM = "WIFI inicializacion OK";
 
-const char IDE_FICHERO_WEB_01 [] PROGMEM = "index.html";
-const char IDE_FICHERO_WEB_02 [] PROGMEM = "styles.css";
 
-byte status;
+
+
+
+#define IDE_DELAY_ERROR           1000  // Pausa de error (ms)
+#define IDE_MAX_CAR_SOLICITUD_WEB 100   // Numero maximo de caracteres que puede tener una peticion web
+
+
+const char IDE_MSG_SD_INI      [] PROGMEM = "SD Card inicializando...";
+const char IDE_MSG_SD_ERROR    [] PROGMEM = "SD card inicializacion ERROR";
+const char IDE_MSG_SD_OK       [] PROGMEM = "SD card inicializacion OK";
+const char IDE_MSG_WIFI_INI    [] PROGMEM = "Iniciando conexión WIFI...";
+const char IDE_MSG_WIFI_ERROR  [] PROGMEM = "WIFI inicializacion ERROR";
+const char IDE_MSG_WIFI_OK     [] PROGMEM = "WIFI inicializacion OK";
+const char IDE_MSG_GEN_ERROR   [] PROGMEM = "ERROR";
+const char IDE_MSG_WEB_PERROR  [] PROGMEM = "Peticion web NO valida";
+const char IDE_MSG_WEB_FICHERO [] PROGMEM = "Enviando ";
+
+const char IDE_FICHERO_WEB_01 [] PROGMEM = "styles.css";
+const char IDE_FICHERO_WEB_02 [] PROGMEM = "index.html";
+const char IDE_FICHERO_WEB_03 [] PROGMEM = "datos.html";
+const char IDE_FICHERO_WEB_04 [] PROGMEM = "error.html";
+
+
+// ----------------------------------------------------------------
+// Variables Globales
+// ----------------------------------------------------------------
+byte   status;
+String buffPeticion= "";
+
+
+
+
 
 // ----------------------------------------------------------------
 //
-//
+// setup
 //
 // ----------------------------------------------------------------
 
@@ -67,7 +90,7 @@ void setup()
   //
   // -------------------------------------------------------------
   status = false;           // Para iniciar por defecto
-  Serial.begin(9600);       // Para depuracion
+  Serial.begin(9600);       // Puerto serie, salida Debug
 
   // -------------------------------------------------------------
   //
@@ -89,78 +112,117 @@ void setup()
        Serial.println(IDE_MSG_WIFI_INI);
        Wifi.begin();
        Serial.println(IDE_MSG_WIFI_OK);
+       
      }
-
-
-
-
-
-   
- 
-
 
    
 }
 
 
 
-
-
-
-
-
 // ----------------------------------------------------------------
 //
-//
+// loop
 //
 // ----------------------------------------------------------------
 
 void loop()
 {
   char c;
-  String command;
+  int  nCar;
+  
+ 
+  if (status==false )
+     { // ----------------------------------
+       //
+       // ----------------------------------
+       if ( Wifi.connected() )
+          {
+            buffPeticion = "";
+            nCar          = 0;
+            while( Wifi.available() )
+                 {
+                   if (nCar>=0 ) 
+                      { 
+                        c = Wifi.read();
+                        buffPeticion = buffPeticion + (char)c;  
+                        nCar++;
+                        if ( nCar>IDE_MAX_CAR_SOLICITUD_WEB )
+                           {
+                             Serial.println(IDE_MSG_WEB_PERROR);
+                             nCar = -1;
+                           }
+                      }
+            }
+       if ( nCar>0 ) 
+          { 
+            procesaPeticion();
+          }
 
-  command = "";
-  while( Wifi.available() )
-       {
-         c = Wifi.read();
-         command = command + (char)c;  
-       }
-  if ( command.length()>0 ) 
-     { 
-       Serial.println(command);
+
+             
+          }
+       
      }
-     
-  delay(50);
+  else
+     { // ----------------------------------
+       // Se ha producido algun error
+       // ----------------------------------
+       Serial.println(IDE_MSG_GEN_ERROR);
+       delay(IDE_DELAY_ERROR);
+     }
+
 }
 
 
 
+// ----------------------------------------------------------------
+//
+// procesaPeticion
+//
+// ----------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void process(WifiData client)
+void procesaPeticion(void)
 {
 
-
-
+  Serial.println(buffPeticion);       
+            
+       if ( buffPeticion.indexOf(IDE_FICHERO_WEB_01)>0 ) { enviarFichero(IDE_FICHERO_WEB_01,false); }
+  else if ( buffPeticion.indexOf(IDE_FICHERO_WEB_02)>0 ) { enviarFichero(IDE_FICHERO_WEB_02,false); }
+  else if ( buffPeticion.indexOf(IDE_FICHERO_WEB_03)>0 ) { enviarFichero(IDE_FICHERO_WEB_03,true);  }
+  else                                                   { enviarFichero(IDE_FICHERO_WEB_04,false); }
 
   
 }
 
 
+
+
+
+// ----------------------------------------------------------------
+//
+// void enviarFichero(char* nFichero,byte opcDatos)
+//
+// ----------------------------------------------------------------
+
+void enviarFichero(char* nFichero,byte opcDatos)
+{
+  // open the file. note that only one file can be open at a time,
+  // so you have to close this one before opening another.
+  File dataFile = SD.open(nFichero);
+  
+  if ( dataFile )
+     {
+       Serial.print(IDE_MSG_WEB_FICHERO);
+       Serial.println(nFichero);
+       while ( dataFile.available() )
+             {
+               Wifi.print(dataFile.read());
+             }
+       Wifi.print(DELIMITER); // very important to end the communication !!!
+     }
+ 
+  dataFile.close();
+}
 
 
