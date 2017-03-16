@@ -1,4 +1,4 @@
-update=14/03/2017 13:40:40
+update=16/03/2017 21:16:39
 version=1
 last_client=kicad
 [pcbnew]
@@ -68,3 +68,13 @@ LibName36=C:/Program Files/KiCad/share/kicad/library/elec-unifil
 LibName37=D:/Cortana/Google drive/Electronica/KiCad/KiCad_Libreria/Baphomet_Libreria
 LibName38=C:/Program Files/KiCad/share/kicad/library/mechanical
 LibName39=C:/Program Files/KiCad/share/kicad/library/motors
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60
