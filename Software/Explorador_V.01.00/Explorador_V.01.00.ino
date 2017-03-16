@@ -58,6 +58,7 @@ const char IDE_MSG_WIFI_INI    [] PROGMEM = "Iniciando conexión WIFI...";
 const char IDE_MSG_WIFI_ERROR  [] PROGMEM = "WIFI inicializacion ERROR";
 const char IDE_MSG_WIFI_OK     [] PROGMEM = "WIFI inicializacion OK";
 const char IDE_MSG_GEN_ERROR   [] PROGMEM = "ERROR";
+const char IDE_MSG_GEN_FICHERO [] PROGMEM = "Falta fichero ";
 const char IDE_MSG_WEB_PERROR  [] PROGMEM = "Peticion web NO valida";
 const char IDE_MSG_WEB_FICHERO [] PROGMEM = "Enviando ";
 
@@ -65,6 +66,7 @@ const char IDE_FICHERO_WEB_01 [] PROGMEM = "styles.css";
 const char IDE_FICHERO_WEB_02 [] PROGMEM = "index.html";
 const char IDE_FICHERO_WEB_03 [] PROGMEM = "datos.html";
 const char IDE_FICHERO_WEB_04 [] PROGMEM = "error.html";
+const char IDE_FICHERO_WEB_05 [] PROGMEM = "img_404.png";
 
 
 // ----------------------------------------------------------------
@@ -101,8 +103,17 @@ void setup()
        // Inicializar tarjeta SD  
        // ------------------------------------------- 
        Serial.println(IDE_MSG_SD_INI);
-       if (SD.begin(IDE_HW_SD_CSPIN)==false) { Serial.println(IDE_MSG_SD_ERROR); status = true; }
-       else                                  { Serial.println(IDE_MSG_SD_OK);                   }
+       if (SD.begin(IDE_HW_SD_CSPIN)==false)
+          {
+            Serial.println(IDE_MSG_SD_ERROR);
+            status = true;
+          }
+       else
+          { 
+            testFicheros();
+            if (status==false)
+                Serial.println(IDE_MSG_SD_OK);
+          }
      }
 
   if ( status==false)
@@ -112,9 +123,7 @@ void setup()
        Serial.println(IDE_MSG_WIFI_INI);
        Wifi.begin();
        Serial.println(IDE_MSG_WIFI_OK);
-       
      }
-
    
 }
 
@@ -153,16 +162,13 @@ void loop()
                              nCar = -1;
                            }
                       }
-            }
-       if ( nCar>0 ) 
-          { 
-            procesaPeticion();
+                 }
+            
+            if ( nCar>0 ) 
+               { 
+                 procesaPeticion();
+               }
           }
-
-
-             
-          }
-       
      }
   else
      { // ----------------------------------
@@ -173,6 +179,49 @@ void loop()
      }
 
 }
+
+
+
+// ----------------------------------------------------------------
+//
+// void testFicheros(void)
+//
+// ----------------------------------------------------------------
+
+void testFicheros(void)
+{
+
+  if ( SD.exists(IDE_FICHERO_WEB_01)==false )
+     { status = true;
+       Serial.print(IDE_MSG_GEN_FICHERO);
+       Serial.println(IDE_FICHERO_WEB_01);
+     } 
+
+  if ( SD.exists(IDE_FICHERO_WEB_02)==false )
+     { status = true;
+       Serial.print(IDE_MSG_GEN_FICHERO);
+       Serial.println(IDE_FICHERO_WEB_02);
+     }  
+
+  if ( SD.exists(IDE_FICHERO_WEB_03)==false )
+     { status = true;
+       Serial.print(IDE_MSG_GEN_FICHERO);
+       Serial.println(IDE_FICHERO_WEB_03);
+     } 
+
+  if ( SD.exists(IDE_FICHERO_WEB_04)==false )
+     { status = true;
+       Serial.print(IDE_MSG_GEN_FICHERO);
+       Serial.println(IDE_FICHERO_WEB_04);
+     } 
+
+  if ( SD.exists(IDE_FICHERO_WEB_05)==false )
+     { status = true;
+       Serial.print(IDE_MSG_GEN_FICHERO);
+       Serial.println(IDE_FICHERO_WEB_05);
+     }  
+}
+
 
 
 
@@ -190,8 +239,8 @@ void procesaPeticion(void)
        if ( buffPeticion.indexOf(IDE_FICHERO_WEB_01)>0 ) { enviarFichero(IDE_FICHERO_WEB_01,false); }
   else if ( buffPeticion.indexOf(IDE_FICHERO_WEB_02)>0 ) { enviarFichero(IDE_FICHERO_WEB_02,false); }
   else if ( buffPeticion.indexOf(IDE_FICHERO_WEB_03)>0 ) { enviarFichero(IDE_FICHERO_WEB_03,true);  }
-  else                                                   { enviarFichero(IDE_FICHERO_WEB_04,false); }
-
+  else if ( buffPeticion.indexOf(IDE_FICHERO_WEB_04)>0 ) { enviarFichero(IDE_FICHERO_WEB_04,false); }
+  else if ( buffPeticion.indexOf(IDE_FICHERO_WEB_05)>0 ) { enviarFichero(IDE_FICHERO_WEB_05,false); }
   
 }
 
