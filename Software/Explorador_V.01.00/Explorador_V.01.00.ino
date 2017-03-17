@@ -30,7 +30,8 @@
 //
 // ----------------------------------------------------------------
 
-#include <UnoWiFiDevEd.h>
+//#include <UnoWiFiDevEd.h>
+#include <aruinoWifi.h>
 #include <SPI.h>
 #include <SD.h>
 #include "explorador.h"
@@ -42,7 +43,7 @@
 // Variables Globales
 // ----------------------------------------------------------------
 
-byte status;
+byte ctrlProg;
 char buffPeticion [IDE_MAX_CAR_SOLICITUD_WEB+1];
 char buffPROGMEM  [IDE_MAX_STR_PROGMEM      +1];  
 
@@ -60,7 +61,7 @@ void setup()
   // -------------------------------------------------------------
   //
   // -------------------------------------------------------------
-  status = false;           // Para iniciar por defecto
+  ctrlProg = false;         // Para iniciar por defecto
   Serial.begin(9600);       // Puerto serie, salida Debug
 
   pinMode(IDE_HW_LEDS,OUTPUT);
@@ -72,7 +73,7 @@ void setup()
   //
   // -------------------------------------------------------------
 
-  if ( status==false)
+  if ( ctrlProg==false)
      { // ------------------------------------------- 
        // Inicializar tarjeta SD  
        // ------------------------------------------- 
@@ -82,17 +83,17 @@ void setup()
        if (SD.begin(IDE_HW_SD_CSPIN)==false)
           {
             SerialString_PROGMEM(IDE_MSG_SD_ERROR,true);
-            status = true;
+            ctrlProg = true;
           }
        else
           { 
             testFicheros();
-            if (status==false)
+            if (ctrlProg==false)
                 SerialString_PROGMEM(IDE_MSG_SD_OK,true);
           }
      }
 
-  if ( status==false)
+  if ( ctrlProg==false)
      { // ------------------------------------------- 
        // Inicializar coenxion Wifi
        // ------------------------------------------- 
@@ -100,6 +101,7 @@ void setup()
        Wifi.begin();
        SerialString_PROGMEM(IDE_MSG_WIFI_OK,true);
      }
+     
 }
 
 
@@ -114,8 +116,9 @@ void loop()
 {
   char c;
   int  nCar;
+
    
-  if (status==false )
+  if (ctrlProg==false )
      { // ----------------------------------
        //
        // ----------------------------------
@@ -164,36 +167,40 @@ void loop()
 
 void testFicheros(void)
 {
-
-  if ( SD.exists(IDE_FICHERO_WEB_01)==false )
-     { status = true;
+  getString_PROGMEM(IDE_FICHERO_WEB_01);
+  if ( SD.exists(buffPROGMEM)==false )
+     { ctrlProg = true;
        SerialString_PROGMEM(IDE_MSG_GEN_FICHERO,false);
        SerialString_PROGMEM(IDE_FICHERO_WEB_01,true);
-     } 
-
-  if ( SD.exists(IDE_FICHERO_WEB_02)==false )
-     { status = true;
+     }   
+  
+  getString_PROGMEM(IDE_FICHERO_WEB_02);
+  if ( SD.exists(buffPROGMEM)==false )
+     { ctrlProg = true;
        SerialString_PROGMEM(IDE_MSG_GEN_FICHERO,false);
        SerialString_PROGMEM(IDE_FICHERO_WEB_02,true);
-     }  
+     }   
 
-  if ( SD.exists(IDE_FICHERO_WEB_03)==false )
-     { status = true;
+  getString_PROGMEM(IDE_FICHERO_WEB_03);
+  if ( SD.exists(buffPROGMEM)==false )
+     { ctrlProg = true;
        SerialString_PROGMEM(IDE_MSG_GEN_FICHERO,false);
        SerialString_PROGMEM(IDE_FICHERO_WEB_03,true);
-     } 
-
-  if ( SD.exists(IDE_FICHERO_WEB_04)==false )
-     { status = true;
+     }   
+  
+  getString_PROGMEM(IDE_FICHERO_WEB_04);
+  if ( SD.exists(buffPROGMEM)==false )
+     { ctrlProg = true;
        SerialString_PROGMEM(IDE_MSG_GEN_FICHERO,false);
        SerialString_PROGMEM(IDE_FICHERO_WEB_04,true);
-     } 
+     }   
 
-  if ( SD.exists(IDE_FICHERO_WEB_05)==false )
-     { status = true;
+  getString_PROGMEM(IDE_FICHERO_WEB_05);
+  if ( SD.exists(buffPROGMEM)==false )
+     { ctrlProg = true;
        SerialString_PROGMEM(IDE_MSG_GEN_FICHERO,false);
        SerialString_PROGMEM(IDE_FICHERO_WEB_05,true);
-     }  
+     }   
 }
 
 
@@ -291,7 +298,8 @@ void SerialString_PROGMEM(const char* msgP,byte opc)
         msgP++;
         ind++;
      }
-      
+     
+ Serial.flush();     
 }
 
 
@@ -311,13 +319,11 @@ void getString_PROGMEM( const char* msgP)
   char c;
   byte ind;
   byte max;
-  byte resultado;
-
+  
   max = strlen_P(msgP); 
     
   if ( max<IDE_MAX_STR_PROGMEM ) 
      {
-       resultado = true;
        for ( ind=0;ind<max; )
            {
              c = pgm_read_byte_near(msgP);
@@ -328,7 +334,6 @@ void getString_PROGMEM( const char* msgP)
      }
   else
      {
-       resultado = false;
        buffPROGMEM[0] = '\0';
      }
  }

@@ -48,11 +48,11 @@ const char IDE_MSG_WEB_PERROR   [] PROGMEM = "Peticion web NO valida";
 const char IDE_MSG_WEB_FICHERO  [] PROGMEM = "Enviando ";
 
 const char IDE_FICHERO_WEB_01   [] PROGMEM = "styles.css";
-const char IDE_FICHERO_WEB_02   [] PROGMEM = "index.html";
-const char IDE_FICHERO_WEB_03   [] PROGMEM = "datos.html";
-const char IDE_FICHERO_WEB_04   [] PROGMEM = "error.html";
+const char IDE_FICHERO_WEB_02   [] PROGMEM = "index.htm";
+const char IDE_FICHERO_WEB_03   [] PROGMEM = "datos.htm";
+const char IDE_FICHERO_WEB_04   [] PROGMEM = "error.htm";
 const char IDE_FICHERO_WEB_05   [] PROGMEM = "img_404.png";
 
 
-#define IDE_MAX_STR_PROGMEM 20
+#define IDE_MAX_STR_PROGMEM 15
 
