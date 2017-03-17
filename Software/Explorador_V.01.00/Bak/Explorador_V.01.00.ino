@@ -43,8 +43,7 @@
 // ----------------------------------------------------------------
 
 byte status;
-char buffPeticion [IDE_MAX_CAR_SOLICITUD_WEB+1];
-char buffPROGMEM  [IDE_MAX_STR_PROGMEM      +1];  
+
 
 
 
@@ -76,19 +75,17 @@ void setup()
      { // ------------------------------------------- 
        // Inicializar tarjeta SD  
        // ------------------------------------------- 
-
-       SerialString_PROGMEM(IDE_MSG_SD_INI,true);
-              
+       Serial.println(IDE_MSG_SD_INI);
        if (SD.begin(IDE_HW_SD_CSPIN)==false)
           {
-            SerialString_PROGMEM(IDE_MSG_SD_ERROR,true);
+            Serial.println(IDE_MSG_SD_ERROR);
             status = true;
           }
        else
           { 
             testFicheros();
             if (status==false)
-                SerialString_PROGMEM(IDE_MSG_SD_OK,true);
+                Serial.println(IDE_MSG_SD_OK);
           }
      }
 
@@ -96,9 +93,9 @@ void setup()
      { // ------------------------------------------- 
        // Inicializar coenxion Wifi
        // ------------------------------------------- 
-       SerialString_PROGMEM(IDE_MSG_WIFI_INI,true);
+       Serial.println(IDE_MSG_WIFI_INI);
        Wifi.begin();
-       SerialString_PROGMEM(IDE_MSG_WIFI_OK,true);
+       Serial.println(IDE_MSG_WIFI_OK);
      }
 }
 
@@ -114,7 +111,8 @@ void loop()
 {
   char c;
   int  nCar;
-   
+  char buffPeticion[IDE_MAX_CAR_SOLICITUD_WEB+1];
+ 
   if (status==false )
      { // ----------------------------------
        //
@@ -130,9 +128,9 @@ void loop()
                         c = Wifi.read();
                         buffPeticion[nCar++] = c;  
                         buffPeticion[nCar]   = '\0';  
-                        if ( nCar>=IDE_MAX_CAR_SOLICITUD_WEB )
+                        if ( nCar>IDE_MAX_CAR_SOLICITUD_WEB )
                            {
-                             SerialString_PROGMEM(IDE_MSG_WEB_PERROR,true);
+                             Serial.println(IDE_MSG_WEB_PERROR);
                              nCar = -1;
                            }
                       }
@@ -148,7 +146,7 @@ void loop()
      { // ----------------------------------
        // Se ha producido algun error
        // ----------------------------------
-       SerialString_PROGMEM(IDE_MSG_GEN_ERROR,true);
+       Serial.println(IDE_MSG_GEN_ERROR);
        delay(IDE_DELAY_ERROR);
      }
 
@@ -167,32 +165,32 @@ void testFicheros(void)
 
   if ( SD.exists(IDE_FICHERO_WEB_01)==false )
      { status = true;
-       SerialString_PROGMEM(IDE_MSG_GEN_FICHERO,false);
-       SerialString_PROGMEM(IDE_FICHERO_WEB_01,true);
+       Serial.print(IDE_MSG_GEN_FICHERO);
+       Serial.println(IDE_FICHERO_WEB_01);
      } 
 
   if ( SD.exists(IDE_FICHERO_WEB_02)==false )
      { status = true;
-       SerialString_PROGMEM(IDE_MSG_GEN_FICHERO,false);
-       SerialString_PROGMEM(IDE_FICHERO_WEB_02,true);
+       Serial.print(IDE_MSG_GEN_FICHERO);
+       Serial.println(IDE_FICHERO_WEB_02);
      }  
 
   if ( SD.exists(IDE_FICHERO_WEB_03)==false )
      { status = true;
-       SerialString_PROGMEM(IDE_MSG_GEN_FICHERO,false);
-       SerialString_PROGMEM(IDE_FICHERO_WEB_03,true);
+       Serial.print(IDE_MSG_GEN_FICHERO);
+       Serial.println(IDE_FICHERO_WEB_03);
      } 
 
   if ( SD.exists(IDE_FICHERO_WEB_04)==false )
      { status = true;
-       SerialString_PROGMEM(IDE_MSG_GEN_FICHERO,false);
-       SerialString_PROGMEM(IDE_FICHERO_WEB_04,true);
+       Serial.print(IDE_MSG_GEN_FICHERO);
+       Serial.println(IDE_FICHERO_WEB_04);
      } 
 
   if ( SD.exists(IDE_FICHERO_WEB_05)==false )
      { status = true;
-       SerialString_PROGMEM(IDE_MSG_GEN_FICHERO,false);
-       SerialString_PROGMEM(IDE_FICHERO_WEB_05,true);
+       Serial.print(IDE_MSG_GEN_FICHERO);
+       Serial.println(IDE_FICHERO_WEB_05);
      }  
 }
 
@@ -207,21 +205,14 @@ void testFicheros(void)
 
 void procesaPeticion(char* buffPeticion)
 {
-  //String s = String(buffPeticion);
-  //char*  f;
-  
+
   Serial.println(buffPeticion);       
-
-
-  
-
-
-  
- //      if ( s.indexOf(buffPROGMEM)>0 ) { enviarFichero(buffPROGMEM,false); }
- // else if ( s.indexOf(F(IDE_FICHERO_WEB_02))>0 ) { enviarFichero(IDE_FICHERO_WEB_02,false); }
- // else if ( s.indexOf(F(IDE_FICHERO_WEB_03))>0 ) { enviarFichero(IDE_FICHERO_WEB_03,true);  }
- // else if ( s.indexOf(F(IDE_FICHERO_WEB_04))>0 ) { enviarFichero(IDE_FICHERO_WEB_04,false); }
- // else if ( s.indexOf(F(IDE_FICHERO_WEB_05))>0 ) { enviarFichero(IDE_FICHERO_WEB_05,false); }
+            
+  //     if ( buffPeticion.indexOf(IDE_FICHERO_WEB_01)>0 ) { enviarFichero(IDE_FICHERO_WEB_01,false); }
+  //else if ( buffPeticion.indexOf(IDE_FICHERO_WEB_02)>0 ) { enviarFichero(IDE_FICHERO_WEB_02,false); }
+  //else if ( buffPeticion.indexOf(IDE_FICHERO_WEB_03)>0 ) { enviarFichero(IDE_FICHERO_WEB_03,true);  }
+  //else if ( buffPeticion.indexOf(IDE_FICHERO_WEB_04)>0 ) { enviarFichero(IDE_FICHERO_WEB_04,false); }
+  //else if ( buffPeticion.indexOf(IDE_FICHERO_WEB_05)>0 ) { enviarFichero(IDE_FICHERO_WEB_05,false); }
   
 }
 
@@ -243,7 +234,7 @@ void enviarFichero(char* nFichero,byte opcDatos)
   
   if ( dataFile )
      {
-       SerialString_PROGMEM(IDE_MSG_WEB_FICHERO,false);
+       Serial.print(IDE_MSG_WEB_FICHERO);
        Serial.println(nFichero);
        while ( dataFile.available() )
              {
@@ -254,83 +245,5 @@ void enviarFichero(char* nFichero,byte opcDatos)
  
   dataFile.close();
 }
-
-
-
-
-
-// ---------------------------------------------------------
-//
-// void SerialString_PROGMEM( const char* msgP,byte opc)
-//
-// Copia el string pedido en el buffer global buffPROGMEM
-//
-// ---------------------------------------------------------
- 
-void SerialString_PROGMEM(const char* msgP,byte opc)
-{
-  char c;
-  byte ind;
-  byte max;
-  
-  max = strlen_P(msgP); 
-  ind = 0;
-    
-  for ( ;ind<max; )
-      {
-        c = pgm_read_byte_near(msgP);
-        if ( ind<(max-1) )
-           {
-             Serial.print(c);
-           }
-        else
-           {
-             if ( opc==false ) { Serial.print  (c); }
-             else              { Serial.println(c); }
-           }
-        msgP++;
-        ind++;
-     }
-      
-}
-
-
-
-// ---------------------------------------------------------
-//
-// void getString_PROGMEM( const char* msgP)
-//
-// Recupera un string almacenado en la memoria deprograma
-//
-// Ver "https://www.arduino.cc/en/Reference/PROGMEM"
-// 
-// ---------------------------------------------------------
- 
-void getString_PROGMEM( const char* msgP)
-{
-  char c;
-  byte ind;
-  byte max;
-  byte resultado;
-
-  max = strlen_P(msgP); 
-    
-  if ( max<IDE_MAX_STR_PROGMEM ) 
-     {
-       resultado = true;
-       for ( ind=0;ind<max; )
-           {
-             c = pgm_read_byte_near(msgP);
-             buffPROGMEM[ind++] = c;
-             buffPROGMEM[ind  ] = '\0';
-             msgP++;
-           }
-     }
-  else
-     {
-       resultado = false;
-       buffPROGMEM[0] = '\0';
-     }
- }
 
 
