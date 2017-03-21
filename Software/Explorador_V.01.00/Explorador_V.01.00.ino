@@ -19,10 +19,8 @@
 // 
 //
 // IMPORTANTE:
-//  Si se utiliza el IDE 1.7.x se debe utilizar la version de libreria ArduinoWiFi.h
-//  e incluir #include <ArduinoWiFi.h>
-//  Si se utiliza el IDE 1.8.x se debe utilizar la version de libreria UNOWiFiDev.Edition
-//  e incluir #include <UnoWiFiDevEd.h>
+//  Si se utiliza el IDE 1.7.x se debe utilizar la version de libreria ArduinoWiFi.h       e incluir #include <ArduinoWiFi.h>
+//  Si se utiliza el IDE 1.8.x se debe utilizar la version de libreria UNOWiFiDev.Edition  e incluir #include <UnoWiFiDevEd.h>
 //  
 // NOTA: 
 //  Esta versión de programa solo fnciona con Arduino
@@ -30,10 +28,11 @@
 //
 // ----------------------------------------------------------------
 
-//#include <UnoWiFiDevEd.h>
-#include <aruinoWifi.h>
-#include <SPI.h>
-#include <SD.h>
+
+#include <UnoWiFiDevEd.h>
+#include <avr/pgmspace.h>
+#include <I2C16.h>           
+#include <EEPROM_24XX1025.h>
 #include "explorador.h"
 
 
@@ -45,7 +44,6 @@
 
 byte ctrlProg;
 char buffPeticion [IDE_MAX_CAR_SOLICITUD_WEB+1];
-char buffPROGMEM  [IDE_MAX_STR_PROGMEM      +1];  
 
 
 
@@ -73,30 +71,11 @@ void setup()
   //
   // -------------------------------------------------------------
 
-  if ( ctrlProg==false)
-     { // ------------------------------------------- 
-       // Inicializar tarjeta SD  
-       // ------------------------------------------- 
-
-       SerialString_PROGMEM(IDE_MSG_SD_INI,true);
-              
-       if (SD.begin(IDE_HW_SD_CSPIN)==false)
-          {
-            SerialString_PROGMEM(IDE_MSG_SD_ERROR,true);
-            ctrlProg = true;
-          }
-       else
-          { 
-            testFicheros();
-            if (ctrlProg==false)
-                SerialString_PROGMEM(IDE_MSG_SD_OK,true);
-          }
-     }
 
   if ( ctrlProg==false)
      { // ------------------------------------------- 
        // Inicializar coenxion Wifi
-       // ------------------------------------------- 
+       // -------------------------------------------       
        SerialString_PROGMEM(IDE_MSG_WIFI_INI,true);
        Wifi.begin();
        SerialString_PROGMEM(IDE_MSG_WIFI_OK,true);
@@ -159,52 +138,6 @@ void loop()
 
 
 
-// ----------------------------------------------------------------
-//
-// void testFicheros(void)
-//
-// ----------------------------------------------------------------
-
-void testFicheros(void)
-{
-  getString_PROGMEM(IDE_FICHERO_WEB_01);
-  if ( SD.exists(buffPROGMEM)==false )
-     { ctrlProg = true;
-       SerialString_PROGMEM(IDE_MSG_GEN_FICHERO,false);
-       SerialString_PROGMEM(IDE_FICHERO_WEB_01,true);
-     }   
-  
-  getString_PROGMEM(IDE_FICHERO_WEB_02);
-  if ( SD.exists(buffPROGMEM)==false )
-     { ctrlProg = true;
-       SerialString_PROGMEM(IDE_MSG_GEN_FICHERO,false);
-       SerialString_PROGMEM(IDE_FICHERO_WEB_02,true);
-     }   
-
-  getString_PROGMEM(IDE_FICHERO_WEB_03);
-  if ( SD.exists(buffPROGMEM)==false )
-     { ctrlProg = true;
-       SerialString_PROGMEM(IDE_MSG_GEN_FICHERO,false);
-       SerialString_PROGMEM(IDE_FICHERO_WEB_03,true);
-     }   
-  
-  getString_PROGMEM(IDE_FICHERO_WEB_04);
-  if ( SD.exists(buffPROGMEM)==false )
-     { ctrlProg = true;
-       SerialString_PROGMEM(IDE_MSG_GEN_FICHERO,false);
-       SerialString_PROGMEM(IDE_FICHERO_WEB_04,true);
-     }   
-
-  getString_PROGMEM(IDE_FICHERO_WEB_05);
-  if ( SD.exists(buffPROGMEM)==false )
-     { ctrlProg = true;
-       SerialString_PROGMEM(IDE_MSG_GEN_FICHERO,false);
-       SerialString_PROGMEM(IDE_FICHERO_WEB_05,true);
-     }   
-}
-
-
-
 
 // ----------------------------------------------------------------
 //
@@ -214,21 +147,12 @@ void testFicheros(void)
 
 void procesaPeticion(char* buffPeticion)
 {
-  //String s = String(buffPeticion);
-  //char*  f;
   
   Serial.println(buffPeticion);       
 
 
   
-
-
-  
- //      if ( s.indexOf(buffPROGMEM)>0 ) { enviarFichero(buffPROGMEM,false); }
- // else if ( s.indexOf(F(IDE_FICHERO_WEB_02))>0 ) { enviarFichero(IDE_FICHERO_WEB_02,false); }
- // else if ( s.indexOf(F(IDE_FICHERO_WEB_03))>0 ) { enviarFichero(IDE_FICHERO_WEB_03,true);  }
- // else if ( s.indexOf(F(IDE_FICHERO_WEB_04))>0 ) { enviarFichero(IDE_FICHERO_WEB_04,false); }
- // else if ( s.indexOf(F(IDE_FICHERO_WEB_05))>0 ) { enviarFichero(IDE_FICHERO_WEB_05,false); }
+   generaRespuesta();
   
 }
 
@@ -236,33 +160,46 @@ void procesaPeticion(char* buffPeticion)
 
 
 
-// ----------------------------------------------------------------
-//
-// void enviarFichero(char* nFichero,byte opcDatos)
-//
-// ----------------------------------------------------------------
 
-void enviarFichero(char* nFichero,byte opcDatos)
+
+
+
+// ---------------------------------------------------------
+//
+// void generaRespuesta(void)
+//
+//
+// ---------------------------------------------------------
+
+void generaRespuesta(void)
 {
-  // open the file. note that only one file can be open at a time,
-  // so you have to close this one before opening another.
-  File dataFile = SD.open(nFichero);
+  Wifi.println(F("HTTP/1.1 200 OK"));
+  Wifi.println(F("Content-Type: text/html"));
+  Wifi.println(F("Connection: close"));
+  Wifi.println();
+  Wifi.println(F("<!DOCTYPE html>"));
+  Wifi.println(F("<html>"));
   
-  if ( dataFile )
-     {
-       SerialString_PROGMEM(IDE_MSG_WEB_FICHERO,false);
-       Serial.println(nFichero);
-       while ( dataFile.available() )
-             {
-               Wifi.print(dataFile.read());
-             }
-       Wifi.print(DELIMITER); // very important to end the communication !!!
-     }
- 
-  dataFile.close();
+  Wifi.println(F("<head><style>"));
+  Wifi.println(F("div {background-color: yellow; border: 1px solid black; padding: 5px; margin: 5px; width: 50px; border-radius: 20px; text-align: center; font-weight:bold;}"));
+  Wifi.println(F("</style></head>"));
+  
+  Wifi.println(F("<body>"));
+  
+  Wifi.println(F("<div>"));
+  Wifi.println(F("LED ON"));
+  Wifi.println(F("</div>"));
+
+  Wifi.println(F("<form action=\"/arduino/webserver/on\" method=\"get\">"));
+  Wifi.println(F("<input type=\"submit\" value=\"Switch ON\" />"));
+  Wifi.println(F("</form>"));
+  
+  Wifi.println(F("</body>"));
+  
+  Wifi.println(F("</html>"));
+  
+  Wifi.print(DELIMITER); // very important to end the communication !!!
 }
-
-
 
 
 
@@ -304,38 +241,25 @@ void SerialString_PROGMEM(const char* msgP,byte opc)
 
 
 
+
+
 // ---------------------------------------------------------
 //
-// void getString_PROGMEM( const char* msgP)
+// void cargaInfoWeb(void)
 //
-// Recupera un string almacenado en la memoria deprograma
 //
-// Ver "https://www.arduino.cc/en/Reference/PROGMEM"
-// 
 // ---------------------------------------------------------
  
-void getString_PROGMEM( const char* msgP)
+void cargaInfoWeb(void)
 {
-  char c;
-  byte ind;
-  byte max;
-  
-  max = strlen_P(msgP); 
-    
-  if ( max<IDE_MAX_STR_PROGMEM ) 
-     {
-       for ( ind=0;ind<max; )
-           {
-             c = pgm_read_byte_near(msgP);
-             buffPROGMEM[ind++] = c;
-             buffPROGMEM[ind  ] = '\0';
-             msgP++;
-           }
-     }
-  else
-     {
-       buffPROGMEM[0] = '\0';
-     }
- }
+
+
+
+
+
+
+}
+
+
 
 

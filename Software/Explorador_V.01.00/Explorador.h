@@ -19,12 +19,12 @@
 #define IDE_HW_MIZQ_VEL            6 // Motor izquierdo, velocidad
 #define IDE_HW_MDER_DIR            8 // Motor derecho, direccion
 #define IDE_HW_MIZQ_DIR            9 // Motor izquierdo, direccion
+#define IDE_HW_MOTORES_CS         10 // Motores, inhibicion
                                      // IMPORTANTE:
                                      // puentes que trae el controlados
                                      // El resto de señales del MC33926 utilizan los
 
 #define IDE_HW_PING                7 // PING: Sensor ultrasonidos
-#define IDE_HW_SD_CSPIN           10 // SD: Chip Select
                                     
 #define IDE_HW_BATERIA            A0 // Nivel de carga de la bateria
 #define IDE_HW_CELULA_DER         A1 // Celula fotoelectrica derecha
@@ -35,24 +35,9 @@
 #define IDE_DELAY_ERROR           1000  // Pausa de error (ms)
 #define IDE_MAX_CAR_SOLICITUD_WEB 50    // Numero maximo de caracteres que puede tener una peticion web
 
-
-const char IDE_MSG_SD_INI       [] PROGMEM = "SD card inicializando...";
-const char IDE_MSG_SD_ERROR     [] PROGMEM = "SD card inicializacion ERROR";
-const char IDE_MSG_SD_OK        [] PROGMEM = "SD card inicializacion OK";
 const char IDE_MSG_WIFI_INI     [] PROGMEM = "WIFI iniciando conexion...";
 const char IDE_MSG_WIFI_ERROR   [] PROGMEM = "WIFI inicializacion ERROR";
 const char IDE_MSG_WIFI_OK      [] PROGMEM = "WIFI inicializacion OK";
 const char IDE_MSG_GEN_ERROR    [] PROGMEM = "ERROR";
-const char IDE_MSG_GEN_FICHERO  [] PROGMEM = "Falta fichero ";
 const char IDE_MSG_WEB_PERROR   [] PROGMEM = "Peticion web NO valida";
-const char IDE_MSG_WEB_FICHERO  [] PROGMEM = "Enviando ";
-
-const char IDE_FICHERO_WEB_01   [] PROGMEM = "styles.css";
-const char IDE_FICHERO_WEB_02   [] PROGMEM = "index.htm";
-const char IDE_FICHERO_WEB_03   [] PROGMEM = "datos.htm";
-const char IDE_FICHERO_WEB_04   [] PROGMEM = "error.htm";
-const char IDE_FICHERO_WEB_05   [] PROGMEM = "img_404.png";
-
-
-#define IDE_MAX_STR_PROGMEM 15
 
