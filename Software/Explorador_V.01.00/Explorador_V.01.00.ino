@@ -19,8 +19,10 @@
 // 
 //
 // IMPORTANTE:
-//  Si se utiliza el IDE 1.7.x se debe utilizar la version de libreria ArduinoWiFi.h       e incluir #include <ArduinoWiFi.h>
-//  Si se utiliza el IDE 1.8.x se debe utilizar la version de libreria UNOWiFiDev.Edition  e incluir #include <UnoWiFiDevEd.h>
+//  Si se utiliza el IDE 1.7.x se debe utilizar la version de libreria ArduinoWiFi.h
+//  e incluir #include <ArduinoWiFi.h>
+//  Si se utiliza el IDE 1.8.x se debe utilizar la version de libreria UNOWiFiDev.Edition
+//  e incluir #include <UnoWiFiDevEd.h>
 //  
 // NOTA: 
 //  Esta versión de programa solo fnciona con Arduino
@@ -28,11 +30,9 @@
 //
 // ----------------------------------------------------------------
 
-
 #include <UnoWiFiDevEd.h>
-#include <avr/pgmspace.h>
-#include <I2C16.h>           
 #include <EEPROM_24XX1025.h>
+#include <I2C16.h>
 #include "explorador.h"
 
 
@@ -42,8 +42,9 @@
 // Variables Globales
 // ----------------------------------------------------------------
 
-byte ctrlProg;
+byte status;
 char buffPeticion [IDE_MAX_CAR_SOLICITUD_WEB+1];
+
 
 
 
@@ -59,7 +60,7 @@ void setup()
   // -------------------------------------------------------------
   //
   // -------------------------------------------------------------
-  ctrlProg = false;         // Para iniciar por defecto
+  status = false;           // Para iniciar por defecto
   Serial.begin(9600);       // Puerto serie, salida Debug
 
   pinMode(IDE_HW_LEDS,OUTPUT);
@@ -71,16 +72,14 @@ void setup()
   //
   // -------------------------------------------------------------
 
-
-  if ( ctrlProg==false)
+  if ( status==false)
      { // ------------------------------------------- 
        // Inicializar coenxion Wifi
-       // -------------------------------------------       
-       SerialString_PROGMEM(IDE_MSG_WIFI_INI,true);
+       // ------------------------------------------- 
+       serialDebug(IDE_MSG_WIFI_INI,true);
        Wifi.begin();
-       SerialString_PROGMEM(IDE_MSG_WIFI_OK,true);
+       serialDebug(IDE_MSG_WIFI_OK,true);
      }
-     
 }
 
 
@@ -95,13 +94,12 @@ void loop()
 {
   char c;
   int  nCar;
-
    
-  if (ctrlProg==false )
+  if (status==false )
      { // ----------------------------------
        //
        // ----------------------------------
-       if ( Wifi.connected() )
+       //if ( Wifi.connected() )
           {
             buffPeticion[0] = '\0';
             nCar            = 0;
@@ -114,7 +112,7 @@ void loop()
                         buffPeticion[nCar]   = '\0';  
                         if ( nCar>=IDE_MAX_CAR_SOLICITUD_WEB )
                            {
-                             SerialString_PROGMEM(IDE_MSG_WEB_PERROR,true);
+                             webError();
                              nCar = -1;
                            }
                       }
@@ -130,7 +128,7 @@ void loop()
      { // ----------------------------------
        // Se ha producido algun error
        // ----------------------------------
-       SerialString_PROGMEM(IDE_MSG_GEN_ERROR,true);
+       webError();
        delay(IDE_DELAY_ERROR);
      }
 
@@ -147,119 +145,136 @@ void loop()
 
 void procesaPeticion(char* buffPeticion)
 {
+  String s = String(buffPeticion);
+  char*  f;
   
-  Serial.println(buffPeticion);       
+  Serial.println(s);   
+      
+ webOk();
+  
+  //webFormulario();
 
-
-  
-   generaRespuesta();
-  
 }
 
 
 
-
-
-
-
-
-
 // ---------------------------------------------------------
 //
-// void generaRespuesta(void)
-//
+// void serialDebug(const __FlashStringHelper* msgP,byte opc)
 //
 // ---------------------------------------------------------
-
-void generaRespuesta(void)
+ 
+void serialDebug(const __FlashStringHelper* msg,byte opc)
 {
+  if ( opc==false ) { Serial.print  (msg); }
+  else              { Serial.println(msg); }
+}
+
+
+
+// ---------------------------------------------------------
+//
+// void WebError(void)
+//
+// ---------------------------------------------------------
+
+void webError()
+{
+  serialDebug(IDE_MSG_WEB_PERROR,true);
+  
+  webIniHtml();
+  Wifi.println(F("<body>"));
+  Wifi.println(F("<div style=\"color:#FF0000;\";>"));
+  Wifi.println(IDE_MSG_WEB_PERROR);
+  Wifi.println(F("</div>"));
+  Wifi.println(F("</body>"));
+  webFinHtml();
+}
+
+
+
+// ---------------------------------------------------------
+//
+// void WebOk(void)
+//
+// ---------------------------------------------------------
+
+void webOk()
+{
+  serialDebug(IDE_MSG_WEB_POK,true);
+  
+  webIniHtml();
+  Wifi.println(F("<body>"));
+  Wifi.println(F("<div style=\"color:#00A000;\";>"));
+  Wifi.println(IDE_MSG_WEB_POK);
+  Wifi.println(F("</div>"));
+  Wifi.println(F("</body>"));
+  webFinHtml();
+ }
+
+
+
+
+// ---------------------------------------------------------
+//
+// void webFormulario(void)
+//
+// ---------------------------------------------------------
+
+void webFormulario(void)
+{
+  webIniHtml();
+
+  Wifi.println(F("<body>"));
+  Wifi.println(F("<div style=\"color:#A00000;\";>"));
+  Wifi.println(IDE_MSG_WEB_ID_ROBOT);
+  Wifi.println(F("</div>"));
+  
+  Wifi.println(F("<form action=\"/arduino/webserver/xx\" id=\"FRM0\" method=\"get\">"));
+  Wifi.println(F("<input type=\"submit\" value=\"Switch OFF\" />"));
+  Wifi.println(F("</form>"));
+
+  
+  Wifi.println(F("</body>"));
+
+  webFinHtml();
+}
+
+
+
+// ---------------------------------------------------------
+//
+// void webIniHtml(void)
+//
+// ---------------------------------------------------------
+
+void webIniHtml(void)
+{
+ 
   Wifi.println(F("HTTP/1.1 200 OK"));
   Wifi.println(F("Content-Type: text/html"));
   Wifi.println(F("Connection: close"));
   Wifi.println();
   Wifi.println(F("<!DOCTYPE html>"));
   Wifi.println(F("<html>"));
-  
-  Wifi.println(F("<head><style>"));
-  Wifi.println(F("div {background-color: yellow; border: 1px solid black; padding: 5px; margin: 5px; width: 50px; border-radius: 20px; text-align: center; font-weight:bold;}"));
-  Wifi.println(F("</style></head>"));
-  
-  Wifi.println(F("<body>"));
-  
-  Wifi.println(F("<div>"));
-  Wifi.println(F("LED ON"));
-  Wifi.println(F("</div>"));
+  Wifi.println(F("<head>"));
+  Wifi.println(F("<title>"));
+  Wifi.println(IDE_MSG_WEB_ID_ROBOT);
+  Wifi.println(F("</title>"));
+  Wifi.println(F("</head>"));
+}
 
-  Wifi.println(F("<form action=\"/arduino/webserver/on\" method=\"get\">"));
-  Wifi.println(F("<input type=\"submit\" value=\"Switch ON\" />"));
-  Wifi.println(F("</form>"));
-  
-  Wifi.println(F("</body>"));
-  
+
+
+// ---------------------------------------------------------
+//
+// void webFinHtml(void)
+//
+// ---------------------------------------------------------
+
+void webFinHtml(void)
+{
   Wifi.println(F("</html>"));
-  
   Wifi.print(DELIMITER); // very important to end the communication !!!
 }
-
-
-
-// ---------------------------------------------------------
-//
-// void SerialString_PROGMEM( const char* msgP,byte opc)
-//
-// Copia el string pedido en el buffer global buffPROGMEM
-//
-// ---------------------------------------------------------
- 
-void SerialString_PROGMEM(const char* msgP,byte opc)
-{
-  char c;
-  byte ind;
-  byte max;
-  
-  max = strlen_P(msgP); 
-  ind = 0;
-    
-  for ( ;ind<max; )
-      {
-        c = pgm_read_byte_near(msgP);
-        if ( ind<(max-1) )
-           {
-             Serial.print(c);
-           }
-        else
-           {
-             if ( opc==false ) { Serial.print  (c); }
-             else              { Serial.println(c); }
-           }
-        msgP++;
-        ind++;
-     }
-     
- Serial.flush();     
-}
-
-
-
-
-
-// ---------------------------------------------------------
-//
-// void cargaInfoWeb(void)
-//
-//
-// ---------------------------------------------------------
- 
-void cargaInfoWeb(void)
-{
-
-
-
-
-
-
-}
-
-
-
 

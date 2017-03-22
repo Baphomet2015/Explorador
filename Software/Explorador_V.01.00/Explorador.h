@@ -35,9 +35,16 @@
 #define IDE_DELAY_ERROR           1000  // Pausa de error (ms)
 #define IDE_MAX_CAR_SOLICITUD_WEB 50    // Numero maximo de caracteres que puede tener una peticion web
 
-const char IDE_MSG_WIFI_INI     [] PROGMEM = "WIFI iniciando conexion...";
-const char IDE_MSG_WIFI_ERROR   [] PROGMEM = "WIFI inicializacion ERROR";
-const char IDE_MSG_WIFI_OK      [] PROGMEM = "WIFI inicializacion OK";
-const char IDE_MSG_GEN_ERROR    [] PROGMEM = "ERROR";
-const char IDE_MSG_WEB_PERROR   [] PROGMEM = "Peticion web NO valida";
+#define IDE_MSG_WIFI_INI         F("WIFI iniciando conexion...")
+#define IDE_MSG_WIFI_OK          F("WIFI inicializacion OK")
+#define IDE_MSG_WEB_PERROR       F("Peticion web NO valida")
+#define IDE_MSG_WEB_POK          F("Peticion web OK")
+#define IDE_MSG_WEB_ID_ROBOT     F("Explorador V1.0")
+
+
+#define IDE_MSG_CMD_LEDS         F("LED")
+
+
+
+
 
