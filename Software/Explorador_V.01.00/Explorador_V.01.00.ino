@@ -149,11 +149,9 @@ void procesaPeticion(char* buffPeticion)
   char*  f;
   
   Serial.println(s);   
-      
- webOk();
   
-  //webFormulario();
-
+  webFormulario();
+  
 }
 
 
@@ -171,119 +169,4 @@ void serialDebug(const __FlashStringHelper* msg,byte opc)
 }
 
 
-
-// ---------------------------------------------------------
-//
-// void WebError(void)
-//
-// ---------------------------------------------------------
-
-void webError()
-{
-  serialDebug(IDE_MSG_WEB_PERROR,true);
-  
-  webIniHtml();
-  Wifi.println(F("<body>"));
-  Wifi.println(F("<div style=\"color:#FF0000;\";>"));
-  Wifi.println(IDE_MSG_WEB_PERROR);
-  Wifi.println(F("</div>"));
-  Wifi.println(F("</body>"));
-  webFinHtml();
-}
-
-
-
-// ---------------------------------------------------------
-//
-// void WebOk(void)
-//
-// ---------------------------------------------------------
-
-void webOk()
-{
-  serialDebug(IDE_MSG_WEB_POK,true);
-  
-  webIniHtml();
-  Wifi.println(F("<body>"));
-  Wifi.println(F("<div style=\"color:#00A000;\";>"));
-  Wifi.println(IDE_MSG_WEB_POK);
-  Wifi.println(F("</div>"));
-  Wifi.println(F("</body>"));
-  webFinHtml();
- }
-
-
-
-
-// ---------------------------------------------------------
-//
-// void webFormulario(void)
-//
-// ---------------------------------------------------------
-
-void webFormulario(void)
-{
-  webIniHtml();
-
-  Wifi.println(F("<body>"));
-  Wifi.println(F("<div style=\"color:#A00000;\";>"));
-  Wifi.println(IDE_MSG_WEB_ID_ROBOT);
-  Wifi.println(F("</div>"));
-  
-  Wifi.println(F("<form action=\"/arduino/webserver/xx\" id=\"FRM0\" method=\"get\">"));
-  Wifi.println(F("<input type=\"submit\" value=\"Switch OFF\" />"));
-  Wifi.println(F("</form>"));
-
-  
-  Wifi.println(F("</body>"));
-
-  webFinHtml();
-}
-
-
-
-// ---------------------------------------------------------
-//
-// void webIniHtml(void)
-//
-// ---------------------------------------------------------
-
-void webIniHtml(void)
-{
- 
-  Wifi.println(F("HTTP/1.1 200 OK"));
-  Wifi.println(F("Content-Type: text/html"));
-  Wifi.println(F("Connection: close"));
-  Wifi.println();
-
-
-
-
-
-
-
-
-  
-  Wifi.println(F("<!DOCTYPE html>"));
-  Wifi.println(F("<html>"));
-  Wifi.println(F("<head>"));
-  Wifi.println(F("<title>"));
-  Wifi.println(IDE_MSG_WEB_ID_ROBOT);
-  Wifi.println(F("</title>"));
-  Wifi.println(F("</head>"));
-}
-
-
-
-// ---------------------------------------------------------
-//
-// void webFinHtml(void)
-//
-// ---------------------------------------------------------
-
-void webFinHtml(void)
-{
-  Wifi.println(F("</html>"));
-  Wifi.print(DELIMITER); // very important to end the communication !!!
-}
 

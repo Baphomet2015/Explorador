@@ -14,15 +14,15 @@ BODY
 
 #contenedor
 { 
-   text-align: left; 
-   width: 80%; 
-   margin: auto; 
+ text-align: left; 
+ width: 80%; 
+ margin: auto; 
 } 
 
 #cabecera
 { 
- background-color:#d0d0ff; 
- color:#333300; 
+ background-color:#1872A0; 
+ color:#E0E0E0; 
  text-align:center; 
  font-size:12pt; 
  font-weight:bold; 
@@ -38,26 +38,26 @@ BODY
 { 
  width:20%;
  height:200px; 
- background-color:#999999; 
+ background-color:#1882A0; 
  text-align: center;
  float:left; 
 } 
 
 #principal
 { 
-   width:100%;
-   height:200px; 
-   background-color:#1882C4;
-   color:#FFFFFF;
-   text-align: left; 
-   font-size:10pt; 
-   font-weight:bold; 
+ width:100%;
+ height:200px; 
+ background-color:#1882C4;
+ color:#FFFFFF;
+ text-align: left; 
+ font-size:10pt; 
+ font-weight:bold; 
 } 
 
 #pie
 {
- background-color:#d0d0ff; 
- color:#333300; 
+ background-color:#1872A0; 
+ color:#FFFFFF; 
  text-align:center; 
  font-size:12pt; 
  font-weight:bold; 
@@ -88,49 +88,42 @@ function fn(v)
  
  <div id="lateral"> 
    <form action="arduino/webserver/" id="FRM0" method="post">
-   <div><input style="color:#00A000; width:50px; height:25px;" value="AV" type="button" onclick="fn('AV')"></div>
-   <div><input style="color:#00A000; width:50px; height:25px;" value="RE" type="button" onclick="fn('RE')"></div>
-   <div><input style="color:#00A000; width:50px; height:25px;" value="PA" type="button" onclick="fn('PA')"></div>
-   <div><input style="color:#00A000; width:50px; height:25px;" value="DE" type="button" onclick="fn('DE')"></div>
-   <div><input style="color:#00A000; width:50px; height:25px;" value="IZ" type="button" onclick="fn('IZ')"></div>
+   <div><input style="color:#00A000; width:100px; height:25px;" value="AV" type="button" onclick="fn('AV')"></div>
+   <div><input style="color:#00A000; width:100px; height:25px;" value="RE" type="button" onclick="fn('RE')"></div>
+   <div><input style="color:#00A000; width:100px; height:25px;" value="PA" type="button" onclick="fn('PA')"></div>
+   <div><input style="color:#00A000; width:100px; height:25px;" value="DE" type="button" onclick="fn('DE')"></div>
+   <div><input style="color:#00A000; width:100px; height:25px;" value="IZ" type="button" onclick="fn('IZ')"></div>
+   <div><input style="color:#00A000; width:100px; height:25px;" value="LED" type="button" onclick="fn('LD')"></div>
+   <div><input style="color:#00A000; width:100px; height:25px;" value="DATOS" type="button" onclick="fn('DT')"></div>
    </form> 
  </div>
     
  <div id="principal"> 
 
-
-<table width="50%" border="1" cellpadding="0" cellspacing="0" style="background-color: #5180ae;">
-
-<tr valign="top">
-<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #ffffff; background-color: transparent; text-decoration: none;">CAMPO1</span></p></td>
-<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #000000; background-color: transparent; text-decoration: none;">0</span></p></td>
-</tr>
+<table width="20%" border="0" cellpadding="0" cellspacing="0"  style="left:200px; top:50px; position:relative;">
 
 <tr valign="top">
-<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #000000; background-color: transparent; text-decoration: none;">CAMPO2</span></p></td>
-<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #000000; background-color: transparent; text-decoration: none;">1</span></p></td>
+<td width="70%" nowrap style="border-width : 0px;"><p style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">MOVIMIENTO:</p></td>
+<td width="30%" nowrap style="border-width : 0px;"><p style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">0</p></td>
 </tr>
-
 <tr valign="top">
-<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #000000; background-color: transparent; text-decoration: none;">CAMPO3</span></p></td>
-<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #000000; background-color: transparent; text-decoration: none;">2</span></p></td>
+<td width="70%" nowrap style="border-width : 0px;"><p style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">TEMPERATURA:</p></td>
+<td width="30%" nowrap style="border-width : 0px;"><p style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">0</p></td>
 </tr>
-
 <tr valign="top">
-<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #000000; background-color: transparent; text-decoration: none;">CAMPO4</span></p></td>
-<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #000000; background-color: transparent; text-decoration: none;">3</span></p></td>
+<td width="70%" nowrap style="border-width : 0px;"><p style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">HUMEDAD:</p></td>
+<td width="30%" nowrap style="border-width : 0px;"><p style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">0</p></td>
 </tr>
-
 <tr valign="top">
-<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #000000; background-color: transparent; text-decoration: none;">CAMPO5</span></p></td>
-<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #000000; background-color: transparent; text-decoration: none;">4</span></p></td>
+<td width="70%" nowrap style="border-width : 0px;"><p style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">DISTANCIA:</p></td>
+<td width="30%" nowrap style="border-width : 0px;"><p style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">0</p></td>
 </tr>
-
+<tr valign="top">
+<td width="70%" nowrap style="border-width : 0px;"><p style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">lEDS:</p></td>
+<td width="30%" nowrap style="border-width : 0px;"><p style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">0</p></td>
+</tr>
 </table>
 
-
-
- 
  </div>
 
 
