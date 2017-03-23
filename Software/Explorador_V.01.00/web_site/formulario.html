@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Explorador V 1.0</title>
+	
+<style type="text/css"> 
+BODY
+{ 
+ font: 8pt Arial,Verdana,Geneva,sans-serif; 
+ margin: 10 0 10 0px; 
+ text-align: center; 
+ background-color: #FFFFFF; 
+} 
+
+#contenedor
+{ 
+   text-align: left; 
+   width: 80%; 
+   margin: auto; 
+} 
+
+#cabecera
+{ 
+ background-color:#d0d0ff; 
+ color:#333300; 
+ text-align:center; 
+ font-size:12pt; 
+ font-weight:bold; 
+ padding: 3 3 3 10px; 
+} 
+
+#cuerpo
+{ 
+ margin: 10 0 10 0px; 
+} 
+
+#lateral
+{ 
+ width:20%;
+ height:200px; 
+ background-color:#999999; 
+ text-align: center;
+ float:left; 
+} 
+
+#principal
+{ 
+   width:100%;
+   height:200px; 
+   background-color:#1882C4;
+   color:#FFFFFF;
+   text-align: left; 
+   font-size:10pt; 
+   font-weight:bold; 
+} 
+
+#pie
+{
+ background-color:#d0d0ff; 
+ color:#333300; 
+ text-align:center; 
+ font-size:12pt; 
+ font-weight:bold; 
+ padding: 3 3 3 10px; 
+}
+</style>
+
+
+<script type="text/JavaScript">
+function fn(v)
+{
+ document.write(v);
+ document.getElementById("FRM0").action += v;
+ document.getElementById("FRM0").submit();
+}
+</script>
+
+
+
+</head>
+  
+<body>
+<div id="contenedor"> 
+  
+ <div id="cabecera">Explorador V 1.0</div> 
+
+ <div id="cuerpo">  
+ 
+ <div id="lateral"> 
+   <form action="arduino/webserver/" id="FRM0" method="post">
+   <div><input style="color:#00A000; width:50px; height:25px;" value="AV" type="button" onclick="fn('AV')"></div>
+   <div><input style="color:#00A000; width:50px; height:25px;" value="RE" type="button" onclick="fn('RE')"></div>
+   <div><input style="color:#00A000; width:50px; height:25px;" value="PA" type="button" onclick="fn('PA')"></div>
+   <div><input style="color:#00A000; width:50px; height:25px;" value="DE" type="button" onclick="fn('DE')"></div>
+   <div><input style="color:#00A000; width:50px; height:25px;" value="IZ" type="button" onclick="fn('IZ')"></div>
+   </form> 
+ </div>
+    
+ <div id="principal"> 
+
+
+<table width="50%" border="1" cellpadding="0" cellspacing="0" style="background-color: #5180ae;">
+
+<tr valign="top">
+<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #ffffff; background-color: transparent; text-decoration: none;">CAMPO1</span></p></td>
+<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #000000; background-color: transparent; text-decoration: none;">0</span></p></td>
+</tr>
+
+<tr valign="top">
+<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #000000; background-color: transparent; text-decoration: none;">CAMPO2</span></p></td>
+<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #000000; background-color: transparent; text-decoration: none;">1</span></p></td>
+</tr>
+
+<tr valign="top">
+<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #000000; background-color: transparent; text-decoration: none;">CAMPO3</span></p></td>
+<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #000000; background-color: transparent; text-decoration: none;">2</span></p></td>
+</tr>
+
+<tr valign="top">
+<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #000000; background-color: transparent; text-decoration: none;">CAMPO4</span></p></td>
+<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #000000; background-color: transparent; text-decoration: none;">3</span></p></td>
+</tr>
+
+<tr valign="top">
+<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #000000; background-color: transparent; text-decoration: none;">CAMPO5</span></p></td>
+<td style="border-width : 0px;"><p style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><span style=" font-size: 10pt; font-family: 'Arial', 'Helvetica', sans-serif; font-style: normal; font-weight: normal; color: #000000; background-color: transparent; text-decoration: none;">4</span></p></td>
+</tr>
+
+</table>
+
+
+
+ 
+ </div>
+
+
+ </div>
+  
+ <div id="pie">Potter Systems</div>  
+  
+</div>
+</body>
+
+</html>

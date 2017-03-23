@@ -255,6 +255,15 @@ void webIniHtml(void)
   Wifi.println(F("Content-Type: text/html"));
   Wifi.println(F("Connection: close"));
   Wifi.println();
+
+
+
+
+
+
+
+
+  
   Wifi.println(F("<!DOCTYPE html>"));
   Wifi.println(F("<html>"));
   Wifi.println(F("<head>"));
