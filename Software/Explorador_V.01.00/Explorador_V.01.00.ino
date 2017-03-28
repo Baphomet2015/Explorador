@@ -30,9 +30,10 @@
 //
 // ----------------------------------------------------------------
 
-#include <UnoWiFiDevEd.h>
-#include <EEPROM_24XX1025.h>
-#include <I2C16.h>
+#include <Wire.h>
+#include <ArduinoWiFi.h>
+//#include <EEPROM_24XX1025.h>
+//#include <I2C16.h>
 #include "explorador.h"
 
 
@@ -103,24 +104,23 @@ void loop()
           {
             buffPeticion[0] = '\0';
             nCar            = 0;
-            while( Wifi.available() )
+            while( Wifi.available() && ( nCar>=0 ) )
                  {
-                   if (nCar>=0 ) 
-                      { 
-                        c = Wifi.read();
-                        buffPeticion[nCar++] = c;  
-                        buffPeticion[nCar]   = '\0';  
-                        if ( nCar>=IDE_MAX_CAR_SOLICITUD_WEB )
-                           {
-                             webError();
-                             nCar = -1;
-                           }
-                      }
+                   c = Wifi.read();
+                   buffPeticion[nCar] = c;  
+                   nCar++;
+                   buffPeticion[nCar]   = '\0';  
+                   if ( nCar>=IDE_MAX_CAR_SOLICITUD_WEB )
+                      {
+                        webError();
+                        nCar = -1;
+                        Wifi.flush();
+                      }                
                  }
             
             if ( nCar>0 ) 
                { 
-                 procesaPeticion(buffPeticion);
+                 procesaPeticion();
                }
           }
      }
@@ -143,14 +143,17 @@ void loop()
 //
 // ----------------------------------------------------------------
 
-void procesaPeticion(char* buffPeticion)
+void procesaPeticion(void)
 {
   String s = String(buffPeticion);
-  char*  f;
+    
+  Serial.println(s); 
   
-  Serial.println(s);   
+       if (s.indexOf("estilos.css")!=-1) { webCss();        }
+  else if (s.indexOf("fn.js")      !=-1) { webJavascript(); }
+  else if (s.indexOf("home.html")  !=-1) { webFormulario(); }
+  else                                   { webNoExiste();   }  
   
-  webFormulario();
   
 }
 

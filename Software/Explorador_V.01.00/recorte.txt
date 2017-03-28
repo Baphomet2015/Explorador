@@ -1,4 +1,27 @@
-                        client.println("Content-Type: text/html");
+                      
+
+
+
+
+
+http://www.john-lassen.de/en/projects/esp-8266-arduino-ide-webconfig
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  client.println("Content-Type: text/html");
                         client.println("Connection: keep-alive");
                         client.println();
                      // send web page
@@ -24,13 +47,30 @@
 http://blog.startingelectronics.com/html-text-box-to-send-text-to-arduino-web-server/
 
 
+PROBAR:
+
+
 
 cliente.println("HTTP/1.1 200 OK"); // enviamos cabeceras
-cliente.println("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-cliente.println("Content-Type: text/javascript");
-cliente.println("Access-Control-Allow-Origin: *");
-
+client.println("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+client.println("Content-Type: text/javascript");
+client.println("Access-Control-Allow-Origin: *");
 client.println("Content-Length: " + content.length());
 
 
+
+The solution is to enable "Enable SLIP on serial port" in the SLIP section of the "Connectivity" Tab in the arduino web control.
+
+
 usar Arduino wifishield
+
+
+
+
+client.print(
+    "This is line 1 "
+    "This is line 2 "
+    "This is line 3 "
+    "however, they are all actually "
+    "on the same line"
+);

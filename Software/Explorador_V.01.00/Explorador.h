@@ -39,6 +39,7 @@
 #define IDE_MSG_WIFI_OK          F("WIFI inicializacion OK")
 #define IDE_MSG_WEB_PERROR       F("Peticion web NO valida")
 #define IDE_MSG_WEB_POK          F("Peticion web OK")
+#define IDE_MSG_WEB_NOEXISTE     F("Pagina no existe")
 #define IDE_MSG_WEB_ID_ROBOT     F("Explorador V1.0")
 
 
