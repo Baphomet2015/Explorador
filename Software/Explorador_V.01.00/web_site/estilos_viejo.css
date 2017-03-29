@@ -1,0 +1,50 @@
+#cabecera
+{ 
+ background-color:#1872A0; 
+ color:#E0E0E0; 
+ text-align:center; 
+ font-size:12pt; 
+ font-weight:bold;
+ font-family: Arial,Verdana,Geneva,sans-serif; 
+ padding: 3 3 3 10px; 
+}
+
+#pie
+{
+ background-color:#1872A0; 
+ color:#FFFFFF; 
+ text-align:center; 
+ font-size:10pt; 
+ font-weight:normal;
+ font-family: Arial,Verdana,Geneva,sans-serif; 
+ padding: 3 3 3 10px; 
+}
+
+#datos
+{ 
+ width:100%;
+ height:200px; 
+ background-color:#1882C4;
+ color:#FFFFFF;
+ text-align: left; 
+ font-weight:bold;
+ font-size:12pt; 
+ font-family: Arial,Verdana,Geneva,sans-serif;
+ margin: auto;  
+}
+
+#menu
+{ 
+ width: 100%; 
+ height:200px; 
+ background-color:#1882A0; 
+ text-align: center;
+ float:left; 
+ margin: auto; 
+} 
+ 
+
+
+
+
+

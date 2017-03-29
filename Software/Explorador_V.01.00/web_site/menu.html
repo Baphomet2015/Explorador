@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style type="text/css"> 
+#menu
+{ 
+ width: 100%; 
+ height:200px; 
+ background-color:#1882A0; 
+ text-align: center;
+ float:left; 
+ margin: auto; 
+} 
+</style>
+<script type="text/JavaScript" src="fn.js"></script> 
+</head>
+
+<body>
+ <div id="menu">  
+ <form action="arduino/webserver/" target="datos" id="FRM0" method="get">
+  <div><input style="color:#00A000; width:100px; height:25px;" value="AV" type="button" onclick="fn('AV')"></div>
+  <div><input style="color:#00A000; width:100px; height:25px;" value="RE" type="button" onclick="fn('RE')"></div>
+  <div><input style="color:#00A000; width:100px; height:25px;" value="PA" type="button" onclick="fn('PA')"></div>
+  <div><input style="color:#00A000; width:100px; height:25px;" value="DE" type="button" onclick="fn('DE')"></div>
+  <div><input style="color:#00A000; width:100px; height:25px;" value="IZ" type="button" onclick="fn('IZ')"></div>
+  <div><input style="color:#00A000; width:100px; height:25px;" value="LED" type="button" onclick="fn('LD')"></div>
+  <div><input style="color:#00A000; width:100px; height:25px;" value="DATOS" type="button" onclick="fn('DT')"></div>
+ </form>
+ </div>
+</body>
+ 
+</html>

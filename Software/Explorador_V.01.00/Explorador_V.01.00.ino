@@ -80,6 +80,7 @@ void setup()
        serialDebug(IDE_MSG_WIFI_INI,true);
        Wifi.begin();
        serialDebug(IDE_MSG_WIFI_OK,true);
+       
      }
 }
 
