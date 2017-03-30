@@ -150,13 +150,14 @@ void procesaPeticion(void)
     
   Serial.println(s); 
   
-       if (s.indexOf("home.html") !=-1) { webHome();       }
-  else if (s.indexOf("cab.html")  !=-1) { webCab();        }
-  else if (s.indexOf("pie.html")  !=-1) { webPie();        }
-  else if (s.indexOf("datos.html")!=-1) { webDatos();      }
-  else if (s.indexOf("menu.html") !=-1) { webMenu();       }
-  else if (s.indexOf("fn.js")     !=-1) { webJavascript(); }
-  else                                  { webNoExiste();   }  
+       if (s.indexOf("home.html")  !=-1) { webHome();       }
+  else if (s.indexOf("cab.html")   !=-1) { webCab();        }
+  else if (s.indexOf("pie.html")   !=-1) { webPie();        }
+  else if (s.indexOf("datos.html") !=-1) { webDatos();      }
+  else if (s.indexOf("menu1.html") !=-1) { webMenu1();       }
+  else if (s.indexOf("menu2.html") !=-1) { webMenu2();       }
+  else if (s.indexOf("fn.js")      !=-1) { webJavascript(); }
+  else                                   { webNoExiste();   }  
   
   
 }

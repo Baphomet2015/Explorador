@@ -202,11 +202,11 @@ void webDatos(void)
 
 // ----------------------------------------------------------------
 //
-// void webMenu(void)
+// void webMenu1(void)
 //
 // ----------------------------------------------------------------
 
-void webMenu(void)
+void webMenu1(void)
 {
   Wifi.println(F("HTTP/1.1 200 OK"));
   Wifi.println(F("Content-Type: text/html"));
@@ -218,7 +218,7 @@ void webMenu(void)
 
   Wifi.println(F("<head>"));
   Wifi.println(F("<style type=\"text/css\">")); 
-  Wifi.println(F("#menu"));
+  Wifi.println(F("#menu1"));
   Wifi.println(F("{")); 
   Wifi.println(F(" width: 100%;")); 
   Wifi.println(F(" height:200px;")); 
@@ -234,15 +234,65 @@ void webMenu(void)
   Wifi.println(F("</head>"));
 
   Wifi.println(F("<body>"));
-  Wifi.println(F("<div id=\"menu\">"));  
-  Wifi.println(F("<form action=\"arduino/webserver/\" target=\"datos\" id=\"FRM0\" method=\"get\">"));
-  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"AV\"    type=\"button\" onclick=\"fn('AV')\"></div>"));
-  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"RE\"    type=\"button\" onclick=\"fn('RE')\"></div>"));
-  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"PA\"    type=\"button\" onclick=\"fn('PA')\"></div>"));
-  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"DE\"    type=\"button\" onclick=\"fn('DE')\"></div>"));
-  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"IZ\"    type=\"button\" onclick=\"fn('IZ')\"></div>"));
-  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"LED\"   type=\"button\" onclick=\"fn('LD')\"></div>"));
-  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"DATOS\" type=\"button\" onclick=\"fn('DT')\"></div>"));
+  Wifi.println(F("<div id=\"menu1\">"));  
+  Wifi.println(F("<form action=\"arduino/webserver/\" target=\"datos\" id=\"FRM1\" method=\"get\">"));
+  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"AV\"    type=\"button\" onclick=\"fn1('AV')\"></div>"));
+  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"RE\"    type=\"button\" onclick=\"fn1('RE')\"></div>"));
+  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"PA\"    type=\"button\" onclick=\"fn1('PA')\"></div>"));
+  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"DE\"    type=\"button\" onclick=\"fn1('DE')\"></div>"));
+  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"IZ\"    type=\"button\" onclick=\"fn1('IZ')\"></div>"));
+  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"LED\"   type=\"button\" onclick=\"fn1('LD')\"></div>"));
+  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"DATOS\" type=\"button\" onclick=\"fn1('DT')\"></div>"));
+  Wifi.println(F("</form>"));
+  Wifi.println(F("</div>"));
+  Wifi.println(F("</body>"));
+
+  Wifi.println(F("</html>"));
+
+  Wifi.print(DELIMITER); 
+}
+
+
+// ----------------------------------------------------------------
+//
+// void webMenu2(void)
+//
+// ----------------------------------------------------------------
+
+void webMenu2(void)
+{
+  Wifi.println(F("HTTP/1.1 200 OK"));
+  Wifi.println(F("Content-Type: text/html"));
+  Wifi.println(F("Connection: close"));
+  Wifi.println();
+
+  Wifi.println(F("<!DOCTYPE html>"));
+  Wifi.println(F("<html>"));
+
+  Wifi.println(F("<head>"));
+  Wifi.println(F("<style type=\"text/css\">")); 
+  Wifi.println(F("#menu2"));
+  Wifi.println(F("{")); 
+  Wifi.println(F(" width: 100%;")); 
+  Wifi.println(F(" height:200px;")); 
+  Wifi.println(F(" background-color:#1882A0;")); 
+  Wifi.println(F(" text-align: center;"));
+  Wifi.println(F(" float:left;")); 
+  Wifi.println(F(" margin: auto;")); 
+  Wifi.println(F("}")); 
+  Wifi.println(F("</style>"));
+
+  Wifi.println(F("<script type=\"text/JavaScript\" src=\"fn.js\"></script>"));
+
+  Wifi.println(F("</head>"));
+
+  Wifi.println(F("<body>"));
+  Wifi.println(F("<div id=\"menu2\">"));  
+  Wifi.println(F("<form action=\"arduino/webserver/\" target=\"datos\" id=\"FRM2\" method=\"get\">"));
+
+
+
+
   Wifi.println(F("</form>"));
   Wifi.println(F("</div>"));
   Wifi.println(F("</body>"));
@@ -267,11 +317,19 @@ void webJavascript(void)
   Wifi.println(F("Connection: close"));
   Wifi.println();
   
-  Wifi.println(F("function fn(v)"));
+  Wifi.println(F("function fn1(v)"));
   Wifi.println(F("{"));
 //Wifi.println(F("document.write(v);"));
-  Wifi.println(F("document.getElementById(\"FRM0\").action += v;"));
-  Wifi.println(F("document.getElementById(\"FRM0\").submit();"));
+  Wifi.println(F("document.getElementById(\"FRM1\").action += v;"));
+  Wifi.println(F("document.getElementById(\"FRM1\").submit();"));
+  Wifi.println(F("}"));
+  Wifi.println();
+
+  Wifi.println(F("function fn2(v)"));
+  Wifi.println(F("{"));
+//Wifi.println(F("document.write(v);"));
+  Wifi.println(F("document.getElementById(\"FRM2\").action += v;"));
+  Wifi.println(F("document.getElementById(\"FRM2\").submit();"));
   Wifi.println(F("}"));
   Wifi.println();
  
