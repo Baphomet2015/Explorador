@@ -20,14 +20,15 @@ void webHome(void)
   Wifi.println(F("<head>"));
   Wifi.println(F("</head>"));
 
-  Wifi.println(F("<frameset rows=\"50,*,50\" frameborder=\"NO\" border=\"0\" framespacing=\"0\">"));
-  Wifi.println(F("<frame id=\"alto\" src=\"cab.html\" noresize/>"));
-  Wifi.println(F("<frameset COLS=\"20%,80%\" frameborder=\"NO\" border=\"0\" framespacing=\"0\">"));
-  Wifi.println(F("<frame name=\"menu\"  src=\"menu.html\"  noresize/>"));
-  Wifi.println(F("<frame name=\"datos\" src=\"datos.html\" noresize/>"));
+  Wifi.println(F("<frameset rows=\"50,*,50\" frameborder=\"0\" border=\"0\" framespacing=\"2\">"));
+  Wifi.println(F("<frame id=\"alto\" src=\"cab.html\" marginheight=\"0\" noresize/>"));
+  Wifi.println(F("<frameset COLS=\"20%,80%\" frameborder=\"0\" border=\"0\" framespacing=\"2\">"));
+  Wifi.println(F("<frame name=\"menu\"  src=\"menu1.html\" marginheight=\"0\" noresize/>"));
+  Wifi.println(F("<frame name=\"datos\" src=\"datos.html\" marginheight=\"0\" noresize/>"));
+  Wifi.println(F("<frame name=\"menu\"  src=\"menu2.html\" marginheight=\"0\" noresize/>"));
   Wifi.println(F("</frameset>"));
  
-  Wifi.println(F("<frame name=\"alto\" src=\"pie.html\" noresize/>"));
+  Wifi.println(F("<frame name=\"alto\" src=\"pie.html\" marginheight=\"0\" noresize/>"));
   Wifi.println(F("</frameset>"));
 
   Wifi.println(F("</html>"));
