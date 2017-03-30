@@ -20,9 +20,9 @@ void webHome(void)
   Wifi.println(F("<head>"));
   Wifi.println(F("</head>"));
 
-  Wifi.println(F("<frameset rows=\"50,*,50\" frameborder=\"0\" border=\"0\" framespacing=\"2\">"));
+  Wifi.println(F("<frameset rows=\"25,*,25\" frameborder=\"0\" border=\"0\" framespacing=\"2\">"));
   Wifi.println(F("<frame id=\"alto\" src=\"cab.html\" marginheight=\"0\" noresize/>"));
-  Wifi.println(F("<frameset COLS=\"20%,80%\" frameborder=\"0\" border=\"0\" framespacing=\"2\">"));
+  Wifi.println(F("<frameset COLS=\"20%,60%\,20%\" frameborder=\"0\" border=\"0\" framespacing=\"2\">"));
   Wifi.println(F("<frame name=\"menu\"  src=\"menu1.html\" marginheight=\"0\" noresize/>"));
   Wifi.println(F("<frame name=\"datos\" src=\"datos.html\" marginheight=\"0\" noresize/>"));
   Wifi.println(F("<frame name=\"menu\"  src=\"menu2.html\" marginheight=\"0\" noresize/>"));
@@ -223,7 +223,7 @@ void webMenu1(void)
   Wifi.println(F("{")); 
   Wifi.println(F(" width: 100%;")); 
   Wifi.println(F(" height:200px;")); 
-  Wifi.println(F(" background-color:#1882A0;")); 
+  Wifi.println(F(" background-color:#A2811C;")); 
   Wifi.println(F(" text-align: center;"));
   Wifi.println(F(" float:left;")); 
   Wifi.println(F(" margin: auto;")); 
@@ -276,7 +276,7 @@ void webMenu2(void)
   Wifi.println(F("{")); 
   Wifi.println(F(" width: 100%;")); 
   Wifi.println(F(" height:200px;")); 
-  Wifi.println(F(" background-color:#1882A0;")); 
+  Wifi.println(F(" background-color:#A2811C;")); 
   Wifi.println(F(" text-align: center;"));
   Wifi.println(F(" float:left;")); 
   Wifi.println(F(" margin: auto;")); 
