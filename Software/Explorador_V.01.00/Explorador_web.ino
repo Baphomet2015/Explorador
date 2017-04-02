@@ -1,4 +1,13 @@
 
+// ----------------------------------------------------------------
+// 
+// Fichero:  Explorador_web.ino
+//
+//
+// ----------------------------------------------------------------
+
+
+#include "explorador.h"
 
 
 // ----------------------------------------------------------------
@@ -237,13 +246,13 @@ void webMenu1(void)
   Wifi.println(F("<body>"));
   Wifi.println(F("<div id=\"menu1\">"));  
   Wifi.println(F("<form action=\"arduino/webserver/\" target=\"datos\" id=\"FRM1\" method=\"get\">"));
-  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"AV\"    type=\"button\" onclick=\"fn1('AV')\"></div>"));
-  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"RE\"    type=\"button\" onclick=\"fn1('RE')\"></div>"));
-  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"PA\"    type=\"button\" onclick=\"fn1('PA')\"></div>"));
-  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"DE\"    type=\"button\" onclick=\"fn1('DE')\"></div>"));
-  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"IZ\"    type=\"button\" onclick=\"fn1('IZ')\"></div>"));
-  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"LED\"   type=\"button\" onclick=\"fn1('LD')\"></div>"));
-  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"DATOS\" type=\"button\" onclick=\"fn1('DT')\"></div>"));
+  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"AV\"    type=\"button\" onclick=\"fn1('AV0')\"></div>"));
+  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"RE\"    type=\"button\" onclick=\"fn1('RE0')\"></div>"));
+  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"PA\"    type=\"button\" onclick=\"fn1('PA0')\"></div>"));
+  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"DE\"    type=\"button\" onclick=\"fn1('DE0')\"></div>"));
+  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"IZ\"    type=\"button\" onclick=\"fn1('IZ0')\"></div>"));
+  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"LED\"   type=\"button\" onclick=\"fn1('LD0')\"></div>"));
+  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"DATOS\" type=\"button\" onclick=\"fn1('DT0')\"></div>"));
   Wifi.println(F("</form>"));
   Wifi.println(F("</div>"));
   Wifi.println(F("</body>"));

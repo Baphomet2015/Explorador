@@ -44,6 +44,7 @@
 // ----------------------------------------------------------------
 
 byte status;
+byte ledEstado;
 char buffPeticion [IDE_MAX_CAR_SOLICITUD_WEB+1];
 
 
@@ -63,25 +64,38 @@ void setup()
   // -------------------------------------------------------------
   status = false;           // Para iniciar por defecto
   Serial.begin(9600);       // Puerto serie, salida Debug
+  ledEstado = 0;
 
   pinMode(IDE_HW_LEDS,OUTPUT);
-  pinMode(IDE_HW_MDER_DIR,OUTPUT);
-  pinMode(IDE_HW_MIZQ_DIR,OUTPUT);
+  pinMode(IDE_HW_M1_DIR,OUTPUT);
+  pinMode(IDE_HW_M2_DIR,OUTPUT);
   pinMode(IDE_HW_PING,OUTPUT);
-
+  pinMode(IDE_HW_M1_SF,INPUT);
+  pinMode(IDE_HW_M2_SF,INPUT);
+  
+ 
+  
+  
+  
+  
   // -------------------------------------------------------------
   //
   // -------------------------------------------------------------
 
   if ( status==false)
      { // ------------------------------------------- 
-       // Inicializar coenxion Wifi
+       // Inicializar conexion Wifi
        // ------------------------------------------- 
        serialDebug(IDE_MSG_WIFI_INI,true);
        Wifi.begin();
        serialDebug(IDE_MSG_WIFI_OK,true);
        
      }
+     
+     
+   cambiarLed(); 
+   
+     
 }
 
 
@@ -154,9 +168,18 @@ void procesaPeticion(void)
   else if (s.indexOf("cab.html")   !=-1) { webCab();        }
   else if (s.indexOf("pie.html")   !=-1) { webPie();        }
   else if (s.indexOf("datos.html") !=-1) { webDatos();      }
-  else if (s.indexOf("menu1.html") !=-1) { webMenu1();       }
-  else if (s.indexOf("menu2.html") !=-1) { webMenu2();       }
+  else if (s.indexOf("menu1.html") !=-1) { webMenu1();      }
+  else if (s.indexOf("menu2.html") !=-1) { webMenu2();      }
   else if (s.indexOf("fn.js")      !=-1) { webJavascript(); }
+  
+  else if (s.indexOf("AV0")        !=-1) {  motorAvance();    }
+  else if (s.indexOf("RE0")        !=-1) {  motorRetroceso(); }
+  else if (s.indexOf("PA0")        !=-1) {  motorParo();    }
+  else if (s.indexOf("DE0")        !=-1) {  motorDerecha(); }
+  else if (s.indexOf("IZ0")        !=-1) {  motorIzquierda(); }
+  else if (s.indexOf("LD0")        !=-1) {  cambiarLed(); }
+  else if (s.indexOf("DT0")        !=-1) {  datos(); }
+    
   else                                   { webNoExiste();   }  
   
   
