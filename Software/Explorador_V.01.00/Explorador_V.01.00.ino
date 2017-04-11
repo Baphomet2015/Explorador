@@ -45,7 +45,9 @@
 
 byte status;
 byte ledEstado;
+float distancia;
 char buffPeticion [IDE_MAX_CAR_SOLICITUD_WEB+1];
+
 
 
 
@@ -65,11 +67,12 @@ void setup()
   status = false;           // Para iniciar por defecto
   Serial.begin(9600);       // Puerto serie, salida Debug
   ledEstado = 0;
+  distancia = 0;
 
   pinMode(IDE_HW_LEDS,OUTPUT);
   pinMode(IDE_HW_M1_DIR,OUTPUT);
   pinMode(IDE_HW_M2_DIR,OUTPUT);
-  pinMode(IDE_HW_PING,OUTPUT);
+  pinMode(IDE_HW_SENSOR_PING,OUTPUT);
   pinMode(IDE_HW_M1_SF,INPUT);
   pinMode(IDE_HW_M2_SF,INPUT);
   

@@ -195,8 +195,15 @@ void webDatos(void)
   Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">0</p></td>"));
   Wifi.println(F("</tr>"));
   Wifi.println(F("<tr valign=\"top\">"));
-  Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">lEDS:</p></td>"));
-  Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">0</p></td>"));
+  Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">LEDS:</p></td>"));
+  
+  
+  Wifi.print(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">"));
+  if(ledEstado==1) { Wifi.print("OFF"); }
+  else             { Wifi.print("0N");  }
+  Wifi.println(F("</p></td>"));
+
+  
   Wifi.println(F("</tr>"));
   Wifi.println(F("</table>"));
   Wifi.println(F("</div>"));

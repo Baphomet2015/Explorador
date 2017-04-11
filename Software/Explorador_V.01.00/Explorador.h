@@ -23,8 +23,9 @@
                                      // IMPORTANTE:
                                      // puentes que trae el controlados
                                      // El resto de señales del MC33926 utilizan los
-
-#define IDE_HW_PING                7 // PING: Sensor ultrasonidos
+       
+#define IDE_PAUSA_PING            5 // Pausa utilizada en el PING para el control
+#define IDE_HW_SENSOR_PING        7 // PING: Sensor ultrasonidos
                                     
 #define IDE_HW_BATERIA            A0 // Nivel de carga de la bateria
 #define IDE_HW_CELULA_DER         A1 // Celula fotoelectrica derecha

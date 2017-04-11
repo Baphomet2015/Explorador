@@ -10,6 +10,9 @@
 #include "explorador.h"
 
 
+
+  
+
 void cambiarLed(void)
 {
   
@@ -26,9 +29,17 @@ void cambiarLed(void)
   webDatos();
 }
 
+
+
+
+
+
 void datos(void)
 {
   
   
+  distancia = getDistancia_PING();
+  Serial.println(distancia,DEC);
+  webDatos();
   
 }
