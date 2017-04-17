@@ -48,9 +48,6 @@
 #define IDE_MSG_WEB_NOEXISTE       F("Pagina no existe")
 #define IDE_MSG_WEB_ID_ROBOT       F("Explorador V1.0")
 
-
-#define IDE_MSG_CMD_LEDS           F("LED")
-
 #define IDE_PAUSA_SALUDO           500
 
 

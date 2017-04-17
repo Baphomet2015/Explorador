@@ -185,18 +185,35 @@ void webDatos(void)
   Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">MOVIMIENTO:</p></td>"));
   Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">0</p></td>"));
   Wifi.println(F("</tr>"));
+  
+  // ----------------------------------------------------------------
+  // Envia la temperatura
+  // ----------------------------------------------------------------
   Wifi.println(F("<tr valign=\"top\">"));
   Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">TEMPERATURA:</p></td>"));
-  Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">0</p></td>"));
-  Wifi.println(F("</tr>"));
-  Wifi.println(F("<tr valign=\"top\">"));
-  Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">HUMEDAD:</p></td>"));
-  Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">0</p></td>"));
+  Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">"));
+  Wifi.print(temperatura);
+  Wifi.println(F("ºC</p></td>"));
   Wifi.println(F("</tr>"));
   
+  // ----------------------------------------------------------------
+  // Envia la humedad
+  // ----------------------------------------------------------------
+  Wifi.println(F("<tr valign=\"top\">"));
+  Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">HUMEDAD:</p></td>"));
+  Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">"));
+  Wifi.print(humedad);
+  Wifi.println(F("%</p></td>"));
+  Wifi.println(F("</tr>"));
+  
+  // ----------------------------------------------------------------
+  // Envia la distancia
+  // ----------------------------------------------------------------
   Wifi.println(F("<tr valign=\"top\">"));
   Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">DISTANCIA:</p></td>"));
-  Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">0</p></td>"));
+  Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">"));
+  Wifi.print(distancia);
+  Wifi.println(F("cm</p></td>"));
   Wifi.println(F("</tr>"));
  
   // ----------------------------------------------------------------
@@ -323,7 +340,7 @@ void webMenu2(void)
   Wifi.println(F("<body>"));
   Wifi.println(F("<div id=\"menu2\">"));  
   Wifi.println(F("<form action=\"arduino/webserver/\" target=\"datos\" id=\"FRM2\" method=\"get\">"));
-
+  Wifi.println(F("<div><input style=\"color:#00A000; width:100px; height:25px;\" value=\"BUSCA LUZ\"    type=\"button\" onclick=\"fn1('BL0')\"></div>"));
 
 
 

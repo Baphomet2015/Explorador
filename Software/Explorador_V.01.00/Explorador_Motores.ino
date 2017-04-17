@@ -22,7 +22,7 @@ void motorAvance(void)
 {
   
   
-  
+  webDatos();
 }
 
 
@@ -37,7 +37,7 @@ void motorRetroceso(void)
 {
   
   
-  
+  webDatos();
 }
 
 
@@ -52,7 +52,7 @@ void motorParo(void)
 {
   
   
-  
+  webDatos();
 }
 
 
@@ -67,7 +67,7 @@ void motorDerecha(void)
 {
   
   
-  
+  webDatos();
 }
 
 
@@ -82,7 +82,7 @@ void motorIzquierda(void)
 {
   
   
-  
+  webDatos();
 }
 
 

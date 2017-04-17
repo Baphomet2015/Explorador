@@ -14,43 +14,43 @@
 
 // ----------------------------------------------------------------
 //
-// float getTemperature(int SHT_dataPin,int SHT_clockPin)
+// float getTemperature(void)
 // Return Temperature in Celsius
 //
 // ----------------------------------------------------------------
 
-float getTemperature(int SHT_dataPin,int SHT_clockPin)
+float getTemperatura(void)
 {
   int val;
   
   
-  SHT_sendCommand(B00000011, SHT_dataPin, SHT_clockPin);
-  SHT_waitForResult(SHT_dataPin);
+  SHT_sendCommand(B00000011, IDE_HW_STH15_DATA, IDE_HW_STH15_SCK);
+  SHT_waitForResult(IDE_HW_STH15_DATA);
 
-  val = SHT_getData(SHT_dataPin, SHT_clockPin);
-  SHT_skipCrc(SHT_dataPin, SHT_clockPin);
-  return ((float)val * 0.01 - 40); //convert to celsius
+  val = SHT_getData(IDE_HW_STH15_DATA, IDE_HW_STH15_SCK);
+  SHT_skipCrc(IDE_HW_STH15_DATA, IDE_HW_STH15_SCK);
+  temperatura = (float)val * 0.01 - 40; //convert to celsius
 }
 
 
 
 // ----------------------------------------------------------------
 //
-// float getHumidity(int SHT_dataPin,int SHT_clockPin)
+// float getHumedad(void)
 //
 // ----------------------------------------------------------------
 
-float getHumidity(int SHT_dataPin,int SHT_clockPin)
+float getHumedad(void)
 {
   int val;
   
   //Return  Relative Humidity
-  SHT_sendCommand(B00000101, SHT_dataPin, SHT_clockPin);
-  SHT_waitForResult(SHT_dataPin);
-  val = SHT_getData(SHT_dataPin, SHT_clockPin);
-  SHT_skipCrc(SHT_dataPin, SHT_clockPin);
+  SHT_sendCommand(B00000101, IDE_HW_STH15_DATA, IDE_HW_STH15_SCK);
+  SHT_waitForResult(IDE_HW_STH15_DATA);
+  val = SHT_getData(IDE_HW_STH15_DATA, IDE_HW_STH15_SCK);
+  SHT_skipCrc(IDE_HW_STH15_DATA, IDE_HW_STH15_SCK);
   
-  return (-4.0 + 0.0405 * val + -0.0000028 * val * val); 
+  humedad =  (float)-4.0 + 0.0405 * val + -0.0000028 * val * val; 
 }
 
 
