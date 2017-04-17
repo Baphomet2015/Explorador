@@ -1,32 +1,27 @@
 
 // -----------------------------------------------------------------------------
 // 
-// Nombre:  Explorador.ino
+// Nombre:  Explorador_V.01.00.ino
 // Version: 1.0
-// Fecha:   01/02/2017
+// Fecha:   01/04/2017
 //
-// Descarga directa de la libreria UnoWiFiDevEd.h (aunque no es preciso porque
-// se descarga desde el IDE en la opcion Programa->Incluir Liberia->Gestionar Libreria):
-// http://www.arduinolibraries.info/libraries/arduino-uno-wi-fi-dev-ed-library
-// https://github.com/arduino-libraries/UnoWiFi-Developer-Edition-Lib/tree/master/src
-
-// Guia de uso de la libreria UnoWiFiDevEd:
-// 
 //
-// ACCESO a esta aplicacion:
-// http://<IP>/arduino/webserver/ 
-// http://<hostname>.local/arduino/webserver/
-// 
+//           UNIR EL ROBOT A LA WIFI DESDE LA QUE SE LE VA A CONTROLAR
 //
-// IMPORTANTE:
-//  Si se utiliza el IDE 1.7.x se debe utilizar la version de libreria ArduinoWiFi.h
-//  e incluir #include <ArduinoWiFi.h>
-//  Si se utiliza el IDE 1.8.x se debe utilizar la version de libreria UNOWiFiDev.Edition
-//  e incluir #include <UnoWiFiDevEd.h>
+// 1 - Conectarse a la WIFI interna de gestion del Arduino:  Arduino-Uno-WIFI-cc7760
+// 2 - Acceder a 192.168.240.1/home.html
+// 3 - Unir el Robot a la WIFI deseada
+// 4 - Apuntar la IP que ha asignado la WIFI al Robot porque es la IP que luego
+//     se utilizará para acceder al Robot.
+//
+//
+//                          ACCESO AL ROBOT
+//
+//              http://<IP>/arduino/webserver/home.html 
+//              http://<hostname>.local/arduino/webserver/
+// IP: Es la direccion IP que el WIFI haya asignado al Robot y que
+//     se ha apuntado antes, al unir el Arduino a la Red.
 //  
-// NOTA: 
-//  Esta versión de programa solo fnciona con Arduino
-//  UNO WIFI Developer Edition  
 //
 // ----------------------------------------------------------------
 
@@ -43,10 +38,11 @@
 // Variables Globales
 // ----------------------------------------------------------------
 
-byte status;
-byte ledEstado;
+byte  ctrlApp;
+byte  ledEstado;
 float distancia;
-char buffPeticion [IDE_MAX_CAR_SOLICITUD_WEB+1];
+byte  bateria;
+char  buffPeticion [IDE_MAX_CAR_SOLICITUD_WEB+1];
 
 
 
@@ -60,14 +56,14 @@ char buffPeticion [IDE_MAX_CAR_SOLICITUD_WEB+1];
 
 void setup()
 {
+    
   
-  // -------------------------------------------------------------
-  //
-  // -------------------------------------------------------------
-  status = false;           // Para iniciar por defecto
   Serial.begin(9600);       // Puerto serie, salida Debug
+  
+  ctrlApp   = false;       
   ledEstado = 0;
   distancia = 0;
+  bateria   = 0;
 
   pinMode(IDE_HW_LEDS,OUTPUT);
   pinMode(IDE_HW_M1_DIR,OUTPUT);
@@ -75,28 +71,26 @@ void setup()
   pinMode(IDE_HW_SENSOR_PING,OUTPUT);
   pinMode(IDE_HW_M1_SF,INPUT);
   pinMode(IDE_HW_M2_SF,INPUT);
-  
- 
-  
-  
-  
+   
   
   // -------------------------------------------------------------
   //
   // -------------------------------------------------------------
 
-  if ( status==false)
+  if ( ctrlApp==false)
      { // ------------------------------------------- 
        // Inicializar conexion Wifi
        // ------------------------------------------- 
+     
        serialDebug(IDE_MSG_WIFI_INI,true);
        Wifi.begin();
        serialDebug(IDE_MSG_WIFI_OK,true);
-       
+      
      }
      
-     
-   cambiarLed(); 
+   
+   saludo();
+   setLeds(); 
    
      
 }
@@ -114,33 +108,42 @@ void loop()
   char c;
   int  nCar;
    
-  if (status==false )
-     { // ----------------------------------
-       //
-       // ----------------------------------
-       //if ( Wifi.connected() )
-          {
-            buffPeticion[0] = '\0';
-            nCar            = 0;
-            while( Wifi.available() && ( nCar>=0 ) )
+  if (ctrlApp==false )
+     {
+       
+       // ----------------------------------------------------------------
+       // Llamada a la funcion getdatos para mantener acctualizadas las  
+       // variables globales que controlan los sensores.
+       // ----------------------------------------------------------------
+       getDatos();
+       
+       
+       buffPeticion[0] = '\0';
+       nCar            = 0;
+       while( Wifi.available() && ( nCar>=0 ) )
+            {
+              // -----------------------------------------------------
+              // Lee los caracteres que se han recibido y los almacena
+              // en el buffer buffPeticion, SOLO se almacenan como
+              // maximo IDE_MAX_CAR_SOLICITUD_WEB caracteres
+              // -----------------------------------------------------
+              c = Wifi.read();
+              buffPeticion[nCar] = c;  
+              nCar++;
+              buffPeticion[nCar]   = '\0';  
+              if ( nCar>=IDE_MAX_CAR_SOLICITUD_WEB )
                  {
-                   c = Wifi.read();
-                   buffPeticion[nCar] = c;  
-                   nCar++;
-                   buffPeticion[nCar]   = '\0';  
-                   if ( nCar>=IDE_MAX_CAR_SOLICITUD_WEB )
-                      {
-                        webError();
-                        nCar = -1;
-                        Wifi.flush();
-                      }                
-                 }
+                   webError();
+                   nCar = -1;
+                   Wifi.flush();
+                }                
+            }      
             
-            if ( nCar>0 ) 
-               { 
-                 procesaPeticion();
-               }
+       if ( nCar>0 ) 
+          { 
+            procesaPeticion();
           }
+        
      }
   else
      { // ----------------------------------
@@ -150,8 +153,33 @@ void loop()
        delay(IDE_DELAY_ERROR);
      }
 
+
+ 
+
+
+
 }
 
+
+
+// ----------------------------------------------------------------
+//
+// saludo
+//
+// ----------------------------------------------------------------
+
+void saludo(void)
+{
+  byte i;
+  
+  for( i=0;i<5;i++ )
+     {
+       digitalWrite(IDE_HW_LEDS,HIGH);
+       delay(IDE_PAUSA_SALUDO);
+       digitalWrite(IDE_HW_LEDS,LOW);
+       delay(IDE_PAUSA_SALUDO);
+     }
+}
 
 
 
@@ -177,11 +205,11 @@ void procesaPeticion(void)
   
   else if (s.indexOf("AV0")        !=-1) {  motorAvance();    }
   else if (s.indexOf("RE0")        !=-1) {  motorRetroceso(); }
-  else if (s.indexOf("PA0")        !=-1) {  motorParo();    }
-  else if (s.indexOf("DE0")        !=-1) {  motorDerecha(); }
+  else if (s.indexOf("PA0")        !=-1) {  motorParo();      }
+  else if (s.indexOf("DE0")        !=-1) {  motorDerecha();   }
   else if (s.indexOf("IZ0")        !=-1) {  motorIzquierda(); }
-  else if (s.indexOf("LD0")        !=-1) {  cambiarLed(); }
-  else if (s.indexOf("DT0")        !=-1) {  datos(); }
+  else if (s.indexOf("LD0")        !=-1) {  setLeds();        }
+  else if (s.indexOf("DT0")        !=-1) {  webDatos();       }
     
   else                                   { webNoExiste();   }  
   

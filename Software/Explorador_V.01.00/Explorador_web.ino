@@ -2,10 +2,12 @@
 // ----------------------------------------------------------------
 // 
 // Fichero:  Explorador_web.ino
+// Version: 1.0
+// Fecha:   01/04/2017
 //
+// Funciones que implementan el interfaz WEB
 //
 // ----------------------------------------------------------------
-
 
 #include "explorador.h"
 
@@ -178,6 +180,7 @@ void webDatos(void)
   Wifi.println(F("<div id=\"datos\">")); 
   Wifi.println(F("<table width=\"50%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"left:25px; top:25px; position:relative;\">"));
 
+ 
   Wifi.println(F("<tr valign=\"top\">"));
   Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">MOVIMIENTO:</p></td>"));
   Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">0</p></td>"));
@@ -190,21 +193,35 @@ void webDatos(void)
   Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">HUMEDAD:</p></td>"));
   Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">0</p></td>"));
   Wifi.println(F("</tr>"));
+  
   Wifi.println(F("<tr valign=\"top\">"));
   Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">DISTANCIA:</p></td>"));
   Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">0</p></td>"));
   Wifi.println(F("</tr>"));
+ 
+  // ----------------------------------------------------------------
+  // Envia el nivel de la bateria
+  // ----------------------------------------------------------------
+  Wifi.println(F("<tr valign=\"top\">"));
+  Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">BATERIA:</p></td>"));
+  Wifi.print(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">"));
+  Wifi.print(bateria);
+  Wifi.println(F("%</p></td>"));
+  Wifi.println(F("</tr>"));
+  
+  // ----------------------------------------------------------------
+  // Envia el estado de los leds
+  // ----------------------------------------------------------------
   Wifi.println(F("<tr valign=\"top\">"));
   Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">LEDS:</p></td>"));
-  
-  
   Wifi.print(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">"));
   if(ledEstado==1) { Wifi.print("OFF"); }
   else             { Wifi.print("0N");  }
   Wifi.println(F("</p></td>"));
-
-  
   Wifi.println(F("</tr>"));
+
+
+
   Wifi.println(F("</table>"));
   Wifi.println(F("</div>"));
 

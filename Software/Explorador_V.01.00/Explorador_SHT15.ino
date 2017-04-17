@@ -1,13 +1,16 @@
 
 // ----------------------------------------------------------------
-// Nombre:  sht.ino
+//
+// Fichero: Explorador_SHT15.ino
 // Version: 1.0
-// Fecha:   01/02/2017
+// Fecha:   01/04/2017
 //
-//
+// Funciones relacionadas con el sensor de temperatura/humedad
+// 
 // ----------------------------------------------------------------
 
 #include "explorador.h"
+
 
 // ----------------------------------------------------------------
 //
