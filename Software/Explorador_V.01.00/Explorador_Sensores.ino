@@ -26,8 +26,8 @@ void getDatos(void)
   
   getDistancia_PING();  // Lee el sensor de ultrasonidos
   getBateria();         // Lee el nivel de la bateria
-  getTemperatura();     // Lee el sensor de temperatura
-  getHumedad();         // Lee el sensor de humedad
+  //getTemperatura();     // Lee el sensor de temperatura
+  //getHumedad();         // Lee el sensor de humedad
   
 }
 
@@ -83,9 +83,8 @@ void getBateria (void)
         val += analogRead(IDE_HW_BATERIA);
       }
   val /= 10;
-  
-  
-  
+ 
+    
   if ( val < IDE_MIN_BATERIA )
      { // ----------------------------------------------------------------
        // Si el valor leido esta por debajo de un valor minimo (el que esta
@@ -100,7 +99,7 @@ void getBateria (void)
         bateria = map(val,IDE_MIN_BATERIA,1023,0,100);
      }
 
-  //Serial.println(bateria,DEC);
+  Serial.println(bateria,DEC);
 
 }
 

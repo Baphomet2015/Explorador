@@ -90,7 +90,8 @@ void setup(void)
   saludo();
   setLeds(); 
    
-     
+     getTemperatura();     // Lee el sensor de temperatura
+  getHumedad();         // Lee el sensor de humedad
 }
 
 

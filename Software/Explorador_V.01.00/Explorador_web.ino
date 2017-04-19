@@ -193,7 +193,7 @@ void webDatos(void)
   Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">TEMPERATURA:</p></td>"));
   Wifi.println(F("<td width=\"50%\" nowrap ><p style=\"margin: 0px 0px 0px 0px;\">"));
   Wifi.print(temperatura);
-  Wifi.println(F("ºC</p></td>"));
+  Wifi.println(F("&#176;C</p></td>"));
   Wifi.println(F("</tr>"));
   
   // ----------------------------------------------------------------
