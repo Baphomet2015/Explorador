@@ -23,11 +23,19 @@
 
 void getDatos(void)
 {
+  unsigned long int tActual;
   
   getDistancia_PING();  // Lee el sensor de ultrasonidos
   getBateria();         // Lee el nivel de la bateria
-  //getTemperatura();     // Lee el sensor de temperatura
-  //getHumedad();         // Lee el sensor de humedad
+
+
+  tActual = millis();  
+  if ( (tActual - temporizador) > IDE_PAUSA_SENSORES_LENTOS )
+     {
+       temporizador = tActual;
+       getTemperatura();     // Lee el sensor de temperatura
+       getHumedad();         // Lee el sensor de humedad
+     }
   
 }
 

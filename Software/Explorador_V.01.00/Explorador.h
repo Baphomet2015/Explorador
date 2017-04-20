@@ -36,7 +36,11 @@
 #define IDE_HW_CELULA_DER          A1    // Celula fotoelectrica derecha
 #define IDE_HW_CELULA_IZQ          A2    // Celula fotoelectrica izquierda
 #define IDE_HW_M1_SF                9    // Motores derecho,   status                                    
-#define IDE_HW_M2_SF               10    // Motores izquierdo, status                                    
+#define IDE_HW_M2_SF               10    // Motores izquierdo, status     
+
+#define IDE_HW_MODO_TRX            A3    // Interruptor del modo de comunicacion WIF/BlueTooth
+                                         // Interruptor ON  --> Comunicacion por BlueTooth
+                                         // Interruptor OFF --> Comunicacion por WIFI
 
 #define IDE_DELAY_ERROR            1000  // Pausa de error (ms)
 #define IDE_MAX_CAR_SOLICITUD_WEB  50    // Numero maximo de caracteres que puede tener una peticion web
@@ -49,6 +53,8 @@
 #define IDE_MSG_WEB_ID_ROBOT       F("Explorador V1.0")
 
 #define IDE_PAUSA_SALUDO           500
+#define IDE_PAUSA_SENSORES_LENTOS  10000L // Pausa en milisengundos para leer los sensores de temperatura y humedad
 
-
+#define IDE_TRX_WIFI               0  
+#define IDE_TRX_BLUETOOTH          1  
 

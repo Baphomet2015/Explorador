@@ -43,9 +43,15 @@ float humedad;     // Variable actualizada con la funcion void getHumedad     (v
 
 char  buffPeticion [IDE_MAX_CAR_SOLICITUD_WEB+1]; // Buffer donde se recibe la peticion web de hacer algo
 
-byte flagBuscaLuz;  // Variable que indica si se esta ejecutando el modo busca luz 
-                    // False NO se esta ejecutando el modo bsca luz
-                    // True  SI se esta ejecutando el modo bsca luz
+byte flagBuscaLuz;      // Variable que indica si se esta ejecutando el modo busca luz 
+                        // False NO se esta ejecutando el modo bsca luz
+                        // True  SI se esta ejecutando el modo bsca luz
+
+byte modoComunicacion;  // IDE_TRX_WIFI:      Comunicacion por WIFI
+                        // IDE_TRX_BLUETOOTH: Comunicación por BlueTooth
+                        
+
+unsigned long int temporizador; // Temporizador para leer los sensores de temperatura y humedad
 
 
 // ----------------------------------------------------------------
@@ -67,7 +73,8 @@ void setup(void)
   humedad     = 0;
 
   flagBuscaLuz = false;
-
+  temporizador = 0L;
+  
   pinMode(IDE_HW_LEDS,OUTPUT);
   pinMode(IDE_HW_M1_DIR,OUTPUT);
   pinMode(IDE_HW_M2_DIR,OUTPUT);
@@ -90,8 +97,9 @@ void setup(void)
   saludo();
   setLeds(); 
    
-     getTemperatura();     // Lee el sensor de temperatura
-  getHumedad();         // Lee el sensor de humedad
+  getModoComunicacion(); // Mira como esta el interruptor de modo de comunicacion (WIFI/BlueTooth)
+  getTemperatura();      // Inicia la variable de temperatura
+  getHumedad();          // Inicia la variable de humedad
 }
 
 
@@ -110,11 +118,25 @@ void loop()
   // ----------------------------------------------------------------
   getDatos();
 
-  // ----------------------------------------------------------------
-  // Llamada a  la  funcion leePeticion() para  comprobar  si  se  ha
-  // recibido algo via web.
-  // ----------------------------------------------------------------
-  leePeticion();       
+
+  if ( modoComunicacion==IDE_TRX_WIFI ) 
+     { // ----------------------------------------------------------------
+       // Comunicacion por WIFI
+       // Llamada a  la  funcion leePeticion() para  comprobar  si  se  ha
+       // recibido algo via web.
+       // ----------------------------------------------------------------
+       leePeticion();       
+     }
+  else
+     { // ----------------------------------------------------------------
+       // Comunicacion por BlueTooth
+       // 
+       // 
+       // ----------------------------------------------------------------
+            
+       
+       
+     }
 
   // ----------------------------------------------------------------
   // Comprueba si se debe ejecutar el modo Busca Luz
@@ -280,9 +302,29 @@ void modoBuscaLuz(void)
 
 
 
+// ---------------------------------------------------------
+//
+// void getModoComunicacion(void)
+// Lee el estado del interruptor que indica el modo de 
+// comunicacion y actualiza la variable global "modoComunicacion"
+//
+// modoComunicacion = IDE_TRX_WIFI      Por WIFI
+// modoComunicacion = IDE_TRX_BLUETOOTH Por BlueTooth
+//
+// ---------------------------------------------------------
 
+void getModoComunicacion(void)
+{
 
-
+  if ( analogRead(IDE_HW_MODO_TRX)>100 )
+     {
+       modoComunicacion = IDE_TRX_BLUETOOTH;
+     }
+  else
+     {
+       modoComunicacion = IDE_TRX_WIFI;       
+     }
+}
 
 
 
