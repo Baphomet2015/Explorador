@@ -43,7 +43,7 @@
                                          // Interruptor OFF --> Comunicacion por WIFI
 
 #define IDE_DELAY_ERROR            1000  // Pausa de error (ms)
-#define IDE_MAX_CAR_SOLICITUD_WEB  50    // Numero maximo de caracteres que puede tener una peticion web
+#define IDE_MAX_CAR_SOLICITUD      50    // Numero maximo de caracteres que puede tener una peticion
 
 #define IDE_MSG_WIFI_INI           F("WIFI iniciando conexion...")
 #define IDE_MSG_WIFI_OK            F("WIFI inicializacion OK")

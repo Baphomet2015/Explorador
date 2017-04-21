@@ -5,6 +5,11 @@
 // Version: 1.0
 // Fecha:   01/04/2017
 //
+// ATENCION:
+// Esta aplicación se DEBE compilar con el IDE 1.7.11 de Arduino
+//
+//
+//
 //
 //           COMO UNIR EL ROBOT A LA WIFI DESDE LA QUE SE LE VA A CONTROLAR
 //
@@ -41,7 +46,7 @@ byte  bateria;     // Variable actualizada con la funcion void  getBateria    (v
 float temperatura; // Variable actualizada con la funcion void getTemperatura (void)
 float humedad;     // Variable actualizada con la funcion void getHumedad     (void)
 
-char  buffPeticion [IDE_MAX_CAR_SOLICITUD_WEB+1]; // Buffer donde se recibe la peticion web de hacer algo
+char  buffPeticion [IDE_MAX_CAR_SOLICITUD+1]; // Buffer donde se recibe la peticion de hacer algo
 
 byte flagBuscaLuz;      // Variable que indica si se esta ejecutando el modo busca luz 
                         // False NO se esta ejecutando el modo bsca luz
@@ -122,10 +127,10 @@ void loop()
   if ( modoComunicacion==IDE_TRX_WIFI ) 
      { // ----------------------------------------------------------------
        // Comunicacion por WIFI
-       // Llamada a  la  funcion leePeticion() para  comprobar  si  se  ha
-       // recibido algo via web.
+       // Llamada a  la  funcion comunicacion_WIFI() para comprobar si  se
+       // ha recibido algo via web.
        // ----------------------------------------------------------------
-       leePeticion();       
+       comunicacion_WIFI();       
      }
   else
      { // ----------------------------------------------------------------
@@ -133,9 +138,7 @@ void loop()
        // 
        // 
        // ----------------------------------------------------------------
-            
-       
-       
+       comunicacion_BlueTooth();            
      }
 
   // ----------------------------------------------------------------
@@ -173,16 +176,16 @@ void saludo(void)
 
 // ----------------------------------------------------------------
 //
-// void leePeticion (void)
+// void comunicacion_WIFI (void)
 //
-// Comprueba si se ha recibido algo via web y en ese caso lo 
-// recupera en el buffer buffPeticion, comprueba que el tamaño no 
-// se pase de IDE_MAX_CAR_SOLICITUD_WEB y se lo pasa a la funcion
-// void procesaPeticion (void)
+// Comprueba si se ha recibido algo via web ( por WIFI ) y  en  ese
+// caso lo recupera en  el buffer buffPeticion, comprobando que  el
+// tamaño no se pase de IDE_MAX_CAR_SOLICITUD_WEB y se lo pasa a la
+// funcion void procesaPeticion (void)
 //
 // ----------------------------------------------------------------
 
-void leePeticion (void)
+void comunicacion_WIFI (void)
 {
   char c;
   int  nCar;
@@ -195,13 +198,13 @@ void leePeticion (void)
          // -----------------------------------------------------
          // Lee los caracteres que se han recibido y los almacena
          // en el buffer buffPeticion, SOLO se almacenan como
-         // maximo IDE_MAX_CAR_SOLICITUD_WEB caracteres
+         // maximo IDE_MAX_CAR_SOLICITUD caracteres
          // -----------------------------------------------------
          c = Wifi.read();
          buffPeticion[nCar] = c;  
          nCar++;
          buffPeticion[nCar]   = '\0';  
-         if ( nCar>=IDE_MAX_CAR_SOLICITUD_WEB )
+         if ( nCar>=IDE_MAX_CAR_SOLICITUD )
             {
               webError();
               nCar = -1;
@@ -211,7 +214,7 @@ void leePeticion (void)
             
   if ( nCar>0 ) 
      { 
-       procesaPeticion();
+       procesa_WIFI();
      }
 }
 
@@ -219,13 +222,13 @@ void leePeticion (void)
 
 // ----------------------------------------------------------------
 //
-// void procesaPeticion (void)
+// void procesa_WIFI (void)
 // Determina si en la peticion que se ha recibido y que esta almacenada
 // en buffPeticion hay algun comando que se deba ejecutar
 //
 // ----------------------------------------------------------------
 
-void procesaPeticion(void)
+void procesa_WIFI(void)
 {
   String s = String(buffPeticion);
     
@@ -255,6 +258,71 @@ void procesaPeticion(void)
 }
 
 
+// ----------------------------------------------------------------
+//
+// void comunicacion_BlueTooth(void)
+//
+// Comprueba si se ha recibido algo via bluetooth
+//
+// ----------------------------------------------------------------
+
+void comunicacion_BlueTooth(void)
+{
+
+  char c;
+  int  nCar;
+  
+  
+  buffPeticion[0] = '\0';
+  nCar            = 0;
+  while( Serial.available() && ( nCar>=0 ) )
+       {
+         // -----------------------------------------------------
+         // Lee los caracteres que se han recibido y los almacena
+         // en el buffer buffPeticion, SOLO se almacenan como
+         // maximo IDE_MAX_CAR_SOLICITUD caracteres
+         // -----------------------------------------------------
+         c = Serial.read();
+         buffPeticion[nCar] = c;  
+         nCar++;
+         buffPeticion[nCar]   = '\0';  
+         if ( nCar>=IDE_MAX_CAR_SOLICITUD )
+            {
+
+              nCar = -1;
+              Serial.flush();
+            }                
+       }      
+            
+  if ( nCar>0 ) 
+     { 
+       procesa_BlueTooth();
+     }
+  
+  
+  
+  
+}
+
+
+
+
+// ---------------------------------------------------------
+//
+// void procesa_BlueTooth(void)
+// 
+//
+// ---------------------------------------------------------
+
+void procesa_BlueTooth(void)
+{
+
+  
+
+}
+ 
+  
+  
 
 // ---------------------------------------------------------
 //
