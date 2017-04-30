@@ -107,7 +107,7 @@ void getBateria (void)
         bateria = map(val,IDE_MIN_BATERIA,1023,0,100);
      }
 
-  Serial.println(bateria,DEC);
+  //Serial.println(bateria,DEC);
 
 }
 

@@ -94,9 +94,9 @@ void setup(void)
   //
   // -------------------------------------------------------------
      
-  serialDebug(IDE_MSG_WIFI_INI,true);
-  Wifi.begin();
-  serialDebug(IDE_MSG_WIFI_OK,true);
+  //serialDebug(IDE_MSG_WIFI_INI,true);
+  //Wifi.begin();
+  //serialDebug(IDE_MSG_WIFI_OK,true);
     
     
   saludo();
@@ -105,6 +105,8 @@ void setup(void)
   getModoComunicacion(); // Mira como esta el interruptor de modo de comunicacion (WIFI/BlueTooth)
   getTemperatura();      // Inicia la variable de temperatura
   getHumedad();          // Inicia la variable de humedad
+  
+  Serial.println("HOLA");
 }
 
 
@@ -275,26 +277,24 @@ void comunicacion_BlueTooth(void)
   
   buffPeticion[0] = '\0';
   nCar            = 0;
-  while( Serial.available() && ( nCar>=0 ) )
+  while( Serial.available()  )
        {
          // -----------------------------------------------------
          // Lee los caracteres que se han recibido y los almacena
-         // en el buffer buffPeticion, SOLO se almacenan como
-         // maximo IDE_MAX_CAR_SOLICITUD caracteres
+         // en el buffer buffPeticion
          // -----------------------------------------------------
          c = Serial.read();
          buffPeticion[nCar] = c;  
          nCar++;
          buffPeticion[nCar]   = '\0';  
-         if ( nCar>=IDE_MAX_CAR_SOLICITUD )
+         if ( nCar==IDE_MAX_CAR_BLUETOOTH )
             {
-
-              nCar = -1;
               Serial.flush();
+              break;
             }                
        }      
-            
-  if ( nCar>0 ) 
+   Serial.println(buffPeticion);          
+  if ( nCar==IDE_MAX_CAR_BLUETOOTH ) 
      { 
        procesa_BlueTooth();
      }
@@ -317,6 +317,29 @@ void comunicacion_BlueTooth(void)
 void procesa_BlueTooth(void)
 {
 
+  String s = String(buffPeticion);
+   
+   
+   
+  
+       if (s.indexOf("AV0")        !=-1) {  motorAvance();     }
+  else if (s.indexOf("RE0")        !=-1) {  motorRetroceso();  }
+  else if (s.indexOf("PA0")        !=-1) {  motorParo();       }
+  else if (s.indexOf("DE0")        !=-1) {  motorDerecha();    }
+  else if (s.indexOf("IZ0")        !=-1) {  motorIzquierda();  }
+  else if (s.indexOf("LD0")        !=-1) {  setLeds();         }
+  else if (s.indexOf("DT0")        !=-1) {                     }
+    
+  else if (s.indexOf("BL0")        !=-1) {  setModoBuscaLuz(); }
+    
+  else                                   {    }  
+  
+  
+  
+  
+  
+  
+  
   
 
 }
