@@ -94,10 +94,7 @@ void setup(void)
   //
   // -------------------------------------------------------------
      
-  //serialDebug(IDE_MSG_WIFI_INI,true);
-  //Wifi.begin();
-  //serialDebug(IDE_MSG_WIFI_OK,true);
-    
+  Wifi.begin();
     
   saludo();
   setLeds(); 
@@ -105,8 +102,7 @@ void setup(void)
   getModoComunicacion(); // Mira como esta el interruptor de modo de comunicacion (WIFI/BlueTooth)
   getTemperatura();      // Inicia la variable de temperatura
   getHumedad();          // Inicia la variable de humedad
-  
-  Serial.println("HOLA");
+
 }
 
 
@@ -234,7 +230,7 @@ void procesa_WIFI(void)
 {
   String s = String(buffPeticion);
     
-  Serial.println(s); 
+  //Serial.println(s); 
   
        if (s.indexOf("home.html")  !=-1) { webHome();       }
   else if (s.indexOf("cab.html")   !=-1) { webCab();        }
@@ -273,34 +269,34 @@ void comunicacion_BlueTooth(void)
 
   char c;
   int  nCar;
-  
-  
+    
   buffPeticion[0] = '\0';
   nCar            = 0;
-  while( Serial.available()  )
+  while( Serial.available()>0  )
        {
          // -----------------------------------------------------
          // Lee los caracteres que se han recibido y los almacena
          // en el buffer buffPeticion
          // -----------------------------------------------------
          c = Serial.read();
+         delayMicroseconds(IDE_PAUSA_CAR_RX);           
          buffPeticion[nCar] = c;  
          nCar++;
-         buffPeticion[nCar]   = '\0';  
+         buffPeticion[nCar] = '\0';  
          if ( nCar==IDE_MAX_CAR_BLUETOOTH )
             {
               Serial.flush();
               break;
-            }                
+            }    
        }      
-   Serial.println(buffPeticion);          
+
   if ( nCar==IDE_MAX_CAR_BLUETOOTH ) 
-     { 
+     { // -----------------------------------------------------
+       // Se han recibido tres caracteres, lo pasa a la funcion
+       // que procesa comandos desde bluetooth
+       // -----------------------------------------------------
        procesa_BlueTooth();
      }
-  
-  
-  
   
 }
 
@@ -318,10 +314,7 @@ void procesa_BlueTooth(void)
 {
 
   String s = String(buffPeticion);
-   
-   
-   
-  
+      
        if (s.indexOf("AV0")        !=-1) {  motorAvance();     }
   else if (s.indexOf("RE0")        !=-1) {  motorRetroceso();  }
   else if (s.indexOf("PA0")        !=-1) {  motorParo();       }
@@ -332,7 +325,7 @@ void procesa_BlueTooth(void)
     
   else if (s.indexOf("BL0")        !=-1) {  setModoBuscaLuz(); }
     
-  else                                   {    }  
+  else                                   {  btNoExiste();      }  
   
   
   
@@ -410,10 +403,12 @@ void getModoComunicacion(void)
   if ( analogRead(IDE_HW_MODO_TRX)>100 )
      {
        modoComunicacion = IDE_TRX_BLUETOOTH;
+       serialDebug(IDE_MSG_BLUETOOTH_OK,true);
      }
   else
      {
        modoComunicacion = IDE_TRX_WIFI;       
+       serialDebug(IDE_MSG_WIFI_OK,true);
      }
 }
 

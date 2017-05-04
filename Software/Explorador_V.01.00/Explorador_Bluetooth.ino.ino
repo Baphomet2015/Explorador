@@ -11,3 +11,14 @@
 
 #include "explorador.h"
 
+
+// ---------------------------------------------------------
+//
+// void btNoExiste(void)
+//
+// ---------------------------------------------------------
+
+void btNoExiste(void)
+{
+  serialDebug(IDE_MSG_BLUETOOTH_CMD_ERROR,true);
+}

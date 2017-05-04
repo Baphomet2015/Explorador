@@ -46,15 +46,19 @@
 #define IDE_MAX_CAR_SOLICITUD      50    // Numero maximo de caracteres que puede tener una peticion
 #define IDE_MAX_CAR_BLUETOOTH      3
 
-#define IDE_MSG_WIFI_INI           F("WIFI iniciando conexion...")
-#define IDE_MSG_WIFI_OK            F("WIFI inicializacion OK")
-#define IDE_MSG_WEB_PERROR         F("Peticion web NO valida")
-#define IDE_MSG_WEB_POK            F("Peticion web OK")
-#define IDE_MSG_WEB_NOEXISTE       F("Pagina no existe")
-#define IDE_MSG_WEB_ID_ROBOT       F("Explorador V1.0")
+#define IDE_MSG_WIFI_OK               F("WIFI inicializacion OK")
+#define IDE_MSG_WEB_PERROR            F("Peticion web NO valida")
+#define IDE_MSG_WEB_POK               F("Peticion web OK")
+#define IDE_MSG_WEB_NOEXISTE          F("Pagina no existe")
+#define IDE_MSG_WEB_ID_ROBOT          F("Explorador V1.0")
+
+#define IDE_MSG_BLUETOOTH_OK          F("BLUETOOTH inicializacion OK")
+#define IDE_MSG_BLUETOOTH_CMD_ERROR   F("Comando NO reconocido")
+
 
 #define IDE_PAUSA_SALUDO           500
 #define IDE_PAUSA_SENSORES_LENTOS  10000L // Pausa en milisengundos para leer los sensores de temperatura y humedad
+#define IDE_PAUSA_CAR_RX           2000   // Pausa en microsegundos para lectura de caracteres en recepcion por Bluetooth
 
 #define IDE_TRX_WIFI               0  
 #define IDE_TRX_BLUETOOTH          1  

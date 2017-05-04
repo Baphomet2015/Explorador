@@ -28,7 +28,6 @@ void getDatos(void)
   getDistancia_PING();  // Lee el sensor de ultrasonidos
   getBateria();         // Lee el nivel de la bateria
 
-
   tActual = millis();  
   if ( (tActual - temporizador) > IDE_PAUSA_SENSORES_LENTOS )
      {
@@ -36,7 +35,6 @@ void getDatos(void)
        getTemperatura();     // Lee el sensor de temperatura
        getHumedad();         // Lee el sensor de humedad
      }
-  
 }
 
   
