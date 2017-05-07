@@ -16,11 +16,13 @@
 
                                          // -------------------------------------------
                                          // Conexion controlador de los motores 
-#define IDE_HW_M1_VEL               5    // Motor derecho, velocidad
-#define IDE_HW_M2_VEL               6    // Motor izquierdo, velocidad
-#define IDE_HW_M1_DIR              13    // Motor derecho, direccion
-#define IDE_HW_M2_DIR              12    // Motor izquierdo, direccion
-#define IDE_HW_MOTORES_EN           8    // Motores, inhibicion
+#define IDE_HW_M1_IN2               5    // Motor derecho, velocidad
+#define IDE_HW_M2_IN2               6    // Motor izquierdo, velocidad
+
+#define IDE_HW_M1_IN1              13    // Motor derecho, direccion
+#define IDE_HW_M2_IN1              12    // Motor izquierdo, direccion
+
+#define IDE_HW_M1_M2_EN             8    // Motores, inhibicion
                                          // IMPORTANTE:
                                          // puentes que trae el controlados
                                          // El resto de señales del MC33926 utilizan los
@@ -53,8 +55,8 @@
 #define IDE_MSG_WEB_ID_ROBOT          F("Explorador V1.0")
 
 #define IDE_MSG_BLUETOOTH_OK          F("BLUETOOTH inicializacion OK")
-#define IDE_MSG_BLUETOOTH_CMD_ERROR   F("Comando NO reconocido")
-
+#define IDE_MSG_BLUETOOTH_CMD_ERROR   F("ER")
+#define IDE_MSG_BLUETOOTH_CMD_OK      F("OK")
 
 #define IDE_PAUSA_SALUDO           500
 #define IDE_PAUSA_SENSORES_LENTOS  10000L // Pausa en milisengundos para leer los sensores de temperatura y humedad
@@ -62,4 +64,21 @@
 
 #define IDE_TRX_WIFI               0  
 #define IDE_TRX_BLUETOOTH          1  
+
+#define IDE_MOTOR_AVANCE           HIGH // Motor Sentido avance  , se aplica a los pines IN1
+#define IDE_MOTOR_RETROCESO        LOW  // Motor SentidoRETROCESO, se aplica a los pines IN1
+
+#define IDE_MOTOR_AVANCE_RAPIDO    10   // Motor avance rapido, se aplica a los pines IN2      
+#define IDE_MOTOR_AVANCE_MEDIO     127  // Motor avance medio , se aplica a los pines IN2    
+#define IDE_MOTOR_AVANCE_LENTO     180  // Motor avance lento, se aplica a los pines IN2    
+
+#define IDE_MOTOR_RETROCESO_RAPIDO 240  // Motor retroceso rapido, se aplica a los pines IN2 
+#define IDE_MOTOR_RETROCESO_MEDIO  127  // Motor retorceso medio, se aplica a los pines IN2 
+#define IDE_MOTOR_RETROCESO_LENTO  80   // Motor retroceso lento, se aplica a los pines IN2 
+
+
+
+
+
+
 

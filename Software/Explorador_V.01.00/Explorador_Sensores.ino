@@ -60,7 +60,13 @@ void setLeds(void)
        ledEstado = 0;
        digitalWrite(IDE_HW_LEDS,HIGH);
      }      
-  webDatos();
+     
+  if ( modoComunicacion==IDE_TRX_WIFI ) 
+     { // ----------------------------------------------------------------
+       // Comunicacion por WIFI
+       // ----------------------------------------------------------------   
+       webDatos();
+    }
 }
 
 

@@ -81,8 +81,13 @@ void setup(void)
   temporizador = 0L;
   
   pinMode(IDE_HW_LEDS,OUTPUT);
-  pinMode(IDE_HW_M1_DIR,OUTPUT);
-  pinMode(IDE_HW_M2_DIR,OUTPUT);
+  
+  pinMode(IDE_HW_M1_IN1,OUTPUT);
+  pinMode(IDE_HW_M1_IN2,OUTPUT);
+  pinMode(IDE_HW_M2_IN1,OUTPUT);
+  pinMode(IDE_HW_M2_IN2,OUTPUT);
+  pinMode(IDE_HW_M1_M2_EN,OUTPUT);
+  
   pinMode(IDE_HW_SENSOR_PING,OUTPUT);
   pinMode(IDE_HW_M1_SF,INPUT);
   pinMode(IDE_HW_M2_SF,INPUT);
@@ -95,14 +100,16 @@ void setup(void)
   // -------------------------------------------------------------
      
   Wifi.begin();
-    
-  saludo();
-  setLeds(); 
    
   getModoComunicacion(); // Mira como esta el interruptor de modo de comunicacion (WIFI/BlueTooth)
   getTemperatura();      // Inicia la variable de temperatura
   getHumedad();          // Inicia la variable de humedad
-
+  
+  iniMotores();
+  
+  
+  saludo();
+  setLeds(); 
 }
 
 

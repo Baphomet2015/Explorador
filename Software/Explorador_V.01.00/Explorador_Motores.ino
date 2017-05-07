@@ -12,6 +12,35 @@
 #include "explorador.h"
 
 
+
+
+// ----------------------------------------------------------------
+//
+// void motorAvance(void)
+//
+// ----------------------------------------------------------------
+
+void iniMotores(void)
+{
+  
+  digitalWrite(IDE_HW_M1_M2_EN,LOW);
+ 
+  analogWrite(IDE_HW_M1_IN2,IDE_MOTOR_AVANCE_MEDIO);
+  analogWrite(IDE_HW_M2_IN2,IDE_MOTOR_AVANCE_MEDIO);
+ 
+  digitalWrite(IDE_HW_M1_IN1,IDE_MOTOR_AVANCE );  
+  digitalWrite(IDE_HW_M2_IN1,IDE_MOTOR_AVANCE );
+  
+  if ( modoComunicacion==IDE_TRX_WIFI ) 
+     { // ----------------------------------------------------------------
+       // Comunicacion por WIFI
+       // ----------------------------------------------------------------   
+       webDatos();
+    }
+}
+
+
+
 // ----------------------------------------------------------------
 //
 // void motorAvance(void)
@@ -22,7 +51,13 @@ void motorAvance(void)
 {
   
   
-  webDatos();
+  if ( modoComunicacion==IDE_TRX_WIFI ) 
+     { // ----------------------------------------------------------------
+       // Comunicacion por WIFI
+       // ----------------------------------------------------------------   
+       webDatos();
+    }
+
 }
 
 
@@ -36,8 +71,13 @@ void motorAvance(void)
 void motorRetroceso(void)
 {
   
-  
-  webDatos();
+   if ( modoComunicacion==IDE_TRX_WIFI ) 
+     { // ----------------------------------------------------------------
+       // Comunicacion por WIFI
+       // ----------------------------------------------------------------   
+       webDatos();
+    }
+ 
 }
 
 
@@ -51,8 +91,14 @@ void motorRetroceso(void)
 void motorParo(void)
 {
   
+  if ( modoComunicacion==IDE_TRX_WIFI ) 
+     { // ----------------------------------------------------------------
+       // Comunicacion por WIFI
+       // ----------------------------------------------------------------   
+       webDatos();
+    }
   
-  webDatos();
+
 }
 
 
@@ -66,8 +112,13 @@ void motorParo(void)
 void motorDerecha(void)
 {
   
-  
-  webDatos();
+ if ( modoComunicacion==IDE_TRX_WIFI ) 
+     { // ----------------------------------------------------------------
+       // Comunicacion por WIFI
+       // ----------------------------------------------------------------   
+       webDatos();
+    }  
+
 }
 
 
@@ -81,8 +132,13 @@ void motorDerecha(void)
 void motorIzquierda(void)
 {
   
+   if ( modoComunicacion==IDE_TRX_WIFI ) 
+     { // ----------------------------------------------------------------
+       // Comunicacion por WIFI
+       // ----------------------------------------------------------------   
+       webDatos();
+    }
   
-  webDatos();
 }
 
 
