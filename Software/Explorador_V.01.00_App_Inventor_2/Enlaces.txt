@@ -1,0 +1,27 @@
+
+
+Acceso al entorno:
+
+  http://ai2.appinventor.mit.edu
+
+
+
+Emulador:
+
+  http://appinventor.mit.edu/explore/ai2/setup-emulator.html
+  http://appinventor.mit.edu/explore/ai2/windows.html
+
+
+
+Tutoriales:
+  
+  https://robologs.net/2015/10/29/tutorial-de-arduino-bluetooth-y-android-2-crear-una-app-con-mit-inventor/
+
+
+  http://kio4.com/appinventor/9bluetootharduino.htm
+
+
+  http://codigo21.educacion.navarra.es/autoaprendizaje/primeros-pasos-con-app-inventor-2/
+  http://codigo21.educacion.navarra.es/autoaprendizaje/descripcion-de-los-bloques-integrados-de-app-inventor-2/
+
+  
