@@ -319,7 +319,7 @@ void comunicacion_BlueTooth(void)
 //
 // ---------------------------------------------------------
 
-void procesa_BlueTooth(void)
+void procesa_BlueTooth()
 {
 
   String s = String(buffPeticion);
@@ -331,7 +331,6 @@ void procesa_BlueTooth(void)
   else if (s.indexOf("IZ0")        !=-1) {  motorIzquierda();  }
   else if (s.indexOf("LD0")        !=-1) {  setLeds();         }
   else if (s.indexOf("DT0")        !=-1) {                     }
-    
   else if (s.indexOf("BL0")        !=-1) {  setModoBuscaLuz(); }
     
   else                                   {  btNoExiste();      }  

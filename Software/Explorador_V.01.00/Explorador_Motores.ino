@@ -53,8 +53,8 @@ void motorAvance(void)
   {
    estadoMotores=true;
   digitalWrite(IDE_HW_M1_M2_EN,estadoMotores);
-  }
-   
+  
+  Serial.write("OK");
   analogWrite(IDE_HW_M1_IN2,IDE_MOTOR_AVANCE_MEDIO);
   analogWrite(IDE_HW_M2_IN2,IDE_MOTOR_AVANCE_MEDIO);
  
@@ -69,6 +69,7 @@ void motorAvance(void)
        // ----------------------------------------------------------------   
        webDatos();
     }
+}
 
 }
 
@@ -87,6 +88,7 @@ void motorRetroceso(void)
    estadoMotores=true;
   digitalWrite(IDE_HW_M1_M2_EN,estadoMotores);
   }
+  Serial.write("OK")
   analogWrite(IDE_HW_M1_IN2,IDE_MOTOR_RETROCESO_MEDIO);
   analogWrite(IDE_HW_M2_IN2,IDE_MOTOR_RETROCESO_MEDIO);
  
@@ -156,8 +158,9 @@ void motorIzquierda(void)
   if(estadoMotores==LOW)
   {
    estadoMotores=true;
-  digitalWrite(IDE_HW_M1_M2_EN,estadoMotores);
+   digitalWrite(IDE_HW_M1_M2_EN,estadoMotores);
   }
+  Serial.write("OK")
   analogWrite(IDE_HW_M1_IN2,IDE_MOTOR_AVANCE_MEDIO);
   analogWrite(IDE_HW_M2_IN2,IDE_MOTOR_RETROCESO_MEDIO);
  
@@ -188,6 +191,7 @@ void motorDerecha(void)
    estadoMotores=true;
   digitalWrite(IDE_HW_M1_M2_EN,estadoMotores);
   }
+  Serial.write("OK")
   analogWrite(IDE_HW_M1_IN2,IDE_MOTOR_RETROCESO_MEDIO);
   analogWrite(IDE_HW_M2_IN2,IDE_MOTOR_AVANCE_MEDIO);
  
