@@ -22,3 +22,15 @@ void btNoExiste(void)
 {
   serialDebug(IDE_MSG_BLUETOOTH_CMD_ERROR,true);
 }
+
+
+// ---------------------------------------------------------
+//
+// void btOk(void)
+//
+// ---------------------------------------------------------
+
+void btOk(void)
+{
+  serialDebug(IDE_MSG_BLUETOOTH_CMD_OK,true);
+}

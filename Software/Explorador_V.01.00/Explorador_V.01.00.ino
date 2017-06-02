@@ -55,7 +55,8 @@ byte flagBuscaLuz;      // Variable que indica si se esta ejecutando el modo bus
 byte modoComunicacion;  // IDE_TRX_WIFI:      Comunicacion por WIFI
                         // IDE_TRX_BLUETOOTH: Comunicación por BlueTooth
                         
-byte estadoMotores;
+byte estadoMotores;     // LOW  Motores PARADOS
+                        // HIGH Motores ENCENDIDOS
                         
 
 unsigned long int temporizador; // Temporizador para leer los sensores de temperatura y humedad

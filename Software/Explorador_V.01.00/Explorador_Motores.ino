@@ -22,21 +22,13 @@
 
 void iniMotores(void)
 {
-  estadoMotores=LOW;
-  digitalWrite(IDE_HW_M1_M2_EN,estadoMotores);
- 
-  analogWrite(IDE_HW_M1_IN2,IDE_MOTOR_AVANCE_MEDIO);
-  analogWrite(IDE_HW_M2_IN2,IDE_MOTOR_AVANCE_MEDIO);
- 
-  digitalWrite(IDE_HW_M1_IN1,IDE_MOTOR_AVANCE );  
-  digitalWrite(IDE_HW_M2_IN1,IDE_MOTOR_AVANCE );
   
-  if ( modoComunicacion==IDE_TRX_WIFI ) 
-     { // ----------------------------------------------------------------
-       // Comunicacion por WIFI
-       // ----------------------------------------------------------------   
-       webDatos();
-    }
+  motorParo();
+  
+  
+  
+  
+  
 }
 
 
@@ -49,27 +41,33 @@ void iniMotores(void)
 
 void motorAvance(void)
 {
-  if(estadoMotores==LOW)
-  {
-   estadoMotores=true;
-  digitalWrite(IDE_HW_M1_M2_EN,estadoMotores);
-  
-  Serial.write("OK");
+    
+  if ( estadoMotores == LOW )
+     {
+       estadoMotores = HIGH;
+       digitalWrite(IDE_HW_M1_M2_EN,estadoMotores);
+     }
+    
   analogWrite(IDE_HW_M1_IN2,IDE_MOTOR_AVANCE_MEDIO);
   analogWrite(IDE_HW_M2_IN2,IDE_MOTOR_AVANCE_MEDIO);
- 
+  
   digitalWrite(IDE_HW_M1_IN1,IDE_MOTOR_AVANCE );  
   digitalWrite(IDE_HW_M2_IN1,IDE_MOTOR_AVANCE );
   
-  
-  
+   
   if ( modoComunicacion==IDE_TRX_WIFI ) 
      { // ----------------------------------------------------------------
        // Comunicacion por WIFI
        // ----------------------------------------------------------------   
        webDatos();
     }
-}
+ else
+    {
+      // ----------------------------------------------------------------
+      // Comunicacion por WIFI
+      // ----------------------------------------------------------------   
+      btOk();         
+    }
 
 }
 
@@ -83,26 +81,33 @@ void motorAvance(void)
 
 void motorRetroceso(void)
 {
-  if(estadoMotores==LOW)
-  {
-   estadoMotores=true;
-  digitalWrite(IDE_HW_M1_M2_EN,estadoMotores);
-  }
-  Serial.write("OK")
+   if ( estadoMotores == LOW )
+     {
+       estadoMotores = HIGH;
+       digitalWrite(IDE_HW_M1_M2_EN,estadoMotores);
+     }
+    
   analogWrite(IDE_HW_M1_IN2,IDE_MOTOR_RETROCESO_MEDIO);
   analogWrite(IDE_HW_M2_IN2,IDE_MOTOR_RETROCESO_MEDIO);
- 
+  
   digitalWrite(IDE_HW_M1_IN1,IDE_MOTOR_RETROCESO );  
   digitalWrite(IDE_HW_M2_IN1,IDE_MOTOR_RETROCESO );
   
-  
-   if ( modoComunicacion==IDE_TRX_WIFI ) 
+    
+  if ( modoComunicacion==IDE_TRX_WIFI ) 
      { // ----------------------------------------------------------------
        // Comunicacion por WIFI
        // ----------------------------------------------------------------   
        webDatos();
     }
- 
+ else
+    {
+      // ----------------------------------------------------------------
+      // Comunicacion por WIFI
+      // ----------------------------------------------------------------   
+      btOk();          
+    }
+  
 }
 
 
@@ -115,33 +120,23 @@ void motorRetroceso(void)
 
 void motorParo(void)
 {
-  
-  if(IDE_HW_M1_IN1==IDE_MOTOR_RETROCESO)
-  {
-    analogWrite(IDE_HW_M1_IN2,0);
-   }
-  else{
-    analogWrite(IDE_HW_M1_IN2,255);
-    }
-  
-  if(IDE_HW_M2_IN1==IDE_MOTOR_RETROCESO)
-  {
-    analogWrite(IDE_HW_M1_IN2,0);
-   }
-  else{
-    analogWrite(IDE_HW_M2_IN2,255);
-    }
-  
-  
-  
-  
+   
+  estadoMotores = LOW;
+  digitalWrite(IDE_HW_M1_M2_EN,estadoMotores);
+   
   if ( modoComunicacion==IDE_TRX_WIFI ) 
      { // ----------------------------------------------------------------
        // Comunicacion por WIFI
        // ----------------------------------------------------------------   
        webDatos();
     }
-  
+ else
+    {
+      // ----------------------------------------------------------------
+      // Comunicacion por WIFI
+      // ----------------------------------------------------------------   
+      btOk();         
+    } 
 
 }
 
@@ -155,24 +150,32 @@ void motorParo(void)
 
 void motorIzquierda(void)
 {
-  if(estadoMotores==LOW)
-  {
-   estadoMotores=true;
-   digitalWrite(IDE_HW_M1_M2_EN,estadoMotores);
-  }
-  Serial.write("OK")
-  analogWrite(IDE_HW_M1_IN2,IDE_MOTOR_AVANCE_MEDIO);
+   if ( estadoMotores == LOW )
+     {
+       estadoMotores = HIGH;
+       digitalWrite(IDE_HW_M1_M2_EN,estadoMotores);
+     }
+    
+  analogWrite(IDE_HW_M1_IN2,IDE_MOTOR_RETROCESO_MEDIO);
   analogWrite(IDE_HW_M2_IN2,IDE_MOTOR_RETROCESO_MEDIO);
- 
+  
   digitalWrite(IDE_HW_M1_IN1,IDE_MOTOR_AVANCE );  
   digitalWrite(IDE_HW_M2_IN1,IDE_MOTOR_RETROCESO );
   
- if ( modoComunicacion==IDE_TRX_WIFI ) 
+    
+  if ( modoComunicacion==IDE_TRX_WIFI ) 
      { // ----------------------------------------------------------------
        // Comunicacion por WIFI
        // ----------------------------------------------------------------   
        webDatos();
-    }  
+    }
+ else
+    {
+      // ----------------------------------------------------------------
+      // Comunicacion por WIFI
+      // ----------------------------------------------------------------   
+      btOk();          
+    }
 
 }
 
@@ -186,25 +189,34 @@ void motorIzquierda(void)
 
 void motorDerecha(void)
 {
-  if(estadoMotores==LOW)
-  {
-   estadoMotores=true;
-  digitalWrite(IDE_HW_M1_M2_EN,estadoMotores);
-  }
-  Serial.write("OK")
+  
+  if ( estadoMotores == LOW )
+     {
+       estadoMotores = HIGH;
+       digitalWrite(IDE_HW_M1_M2_EN,estadoMotores);
+     }
+    
   analogWrite(IDE_HW_M1_IN2,IDE_MOTOR_RETROCESO_MEDIO);
-  analogWrite(IDE_HW_M2_IN2,IDE_MOTOR_AVANCE_MEDIO);
- 
+  analogWrite(IDE_HW_M2_IN2,IDE_MOTOR_RETROCESO_MEDIO);
+  
   digitalWrite(IDE_HW_M1_IN1,IDE_MOTOR_RETROCESO );  
   digitalWrite(IDE_HW_M2_IN1,IDE_MOTOR_AVANCE );
   
-   if ( modoComunicacion==IDE_TRX_WIFI ) 
+    
+  if ( modoComunicacion==IDE_TRX_WIFI ) 
      { // ----------------------------------------------------------------
        // Comunicacion por WIFI
        // ----------------------------------------------------------------   
        webDatos();
     }
-  
+ else
+    {
+      // ----------------------------------------------------------------
+      // Comunicacion por WIFI
+      // ----------------------------------------------------------------   
+      btOk();          
+    }
+   
 }
 
 
