@@ -94,6 +94,9 @@ void getBateria (void)
       {
         val += analogRead(IDE_HW_BATERIA);
       }
+      
+      
+      
   val /= 10;
  
     
@@ -114,9 +117,6 @@ void getBateria (void)
   //Serial.println(bateria,DEC);
 
 }
-
-
-
 
 
 

@@ -41,10 +41,10 @@
 // ----------------------------------------------------------------
                    
 byte  ledEstado;   // Variable actualizada con la funcion void  setLeds       (void)
-float distancia;   // Variable actualizada con la funcion void  getDistancia  (void)
+byte distancia;   // Variable actualizada con la funcion void  getDistancia  (void)
 byte  bateria;     // Variable actualizada con la funcion void  getBateria    (void)
-float temperatura; // Variable actualizada con la funcion void getTemperatura (void)
-float humedad;     // Variable actualizada con la funcion void getHumedad     (void)
+byte temperatura; // Variable actualizada con la funcion void getTemperatura (void)
+byte humedad;     // Variable actualizada con la funcion void getHumedad     (void)
 
 char  buffPeticion [IDE_MAX_CAR_SOLICITUD+1]; // Buffer donde se recibe la peticion de hacer algo
 
@@ -331,7 +331,7 @@ void procesa_BlueTooth()
   else if (s.indexOf("DE0")        !=-1) {  motorDerecha();    }
   else if (s.indexOf("IZ0")        !=-1) {  motorIzquierda();  }
   else if (s.indexOf("LD0")        !=-1) {  setLeds();         }
-  else if (s.indexOf("DT0")        !=-1) {                     }
+  else if (s.indexOf("DT0")        !=-1) {  bluetoothDatos();  }
   else if (s.indexOf("BL0")        !=-1) {  setModoBuscaLuz(); }
     
   else                                   {  btNoExiste();      }  

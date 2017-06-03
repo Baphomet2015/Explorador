@@ -34,3 +34,48 @@ void btOk(void)
 {
   serialDebug(IDE_MSG_BLUETOOTH_CMD_OK,true);
 }
+
+
+
+
+// ---------------------------------------------------------
+//
+// void bluetoothDatos((void)
+//
+// ---------------------------------------------------------
+
+void bluetoothDatos(void)
+{
+  char buff[12+1];
+  
+  sprintf(buff, "%03d%03d%03d%03d", distancia,bateria,temperatura,humedad);
+  Serial.println(buff);
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
